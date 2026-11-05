@@ -1,8 +1,8 @@
 {
-    "name": "net.maaaaa.candy-box.face-emo-splitter.Editor",
-    "rootNamespace": "Poyo.CandyBox.FaceEmoSplitter.Editor",
+    "name": "net.maaaaa.avatar-toolbox.face-emo-splitter.Editor",
+    "rootNamespace": "Poyo.AvatarToolbox.FaceEmoSplitter.Editor",
     "references": [
-        "net.maaaaa.candy-box.Editor",
+        "net.maaaaa.avatar-toolbox.Editor",
         "jp.suzuryg.face-emo.appmain.Editor",
         "jp.suzuryg.face-emo.usecase.Runtime",
         "jp.suzuryg.face-emo.components.Runtime",
@@ -18,14 +18,14 @@
     "precompiledReferences": [],
     "autoReferenced": false,
     "defineConstraints": [
-        "CANDY_BOX_TOOL_08",
-        "CANDY_BOX_HAS_FACEEMO"
+        "AVATAR_TOOLBOX_TOOL_08",
+        "AVATAR_TOOLBOX_HAS_FACEEMO"
     ],
     "versionDefines": [
         {
             "name": "jp.suzuryg.face-emo",
             "expression": "[1.7.0,2.0.0)",
-            "define": "CANDY_BOX_HAS_FACEEMO"
+            "define": "AVATAR_TOOLBOX_HAS_FACEEMO"
         }
     ],
     "noEngineReferences": false

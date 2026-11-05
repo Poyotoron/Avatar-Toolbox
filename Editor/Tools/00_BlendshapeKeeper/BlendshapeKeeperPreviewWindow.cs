@@ -4,12 +4,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Poyo.CandyBox.BlendshapeKeeper.Editor
+namespace Poyo.AvatarToolbox.BlendshapeKeeper.Editor
 {
     internal sealed class BlendshapeKeeperPreviewWindow : EditorWindow
     {
         private static readonly GUIContent MissingPreviewContent = new GUIContent(
-            "走査結果が失われました。元のウィンドウから開き直してください。");
+            "調べた結果が失われました。元のウィンドウから開き直してください。");
         private static readonly GUIContent ClipContent = new GUIContent("アニメーション");
         private static readonly GUIContent TimeContent = new GUIContent("時刻");
         private static readonly GUIContent HumanMotionContent = new GUIContent(
@@ -159,7 +159,7 @@ namespace Poyo.CandyBox.BlendshapeKeeper.Editor
 
             _copyRoot = Instantiate(_avatarRoot);
             _copyRoot.hideFlags = HideFlags.HideAndDontSave;
-            _copyRoot.name = "CandyBoxPreview";
+            _copyRoot.name = "AvatarToolboxPreview";
             _copyRoot.transform.position = Vector3.zero;
             _copyRoot.transform.rotation = Quaternion.identity;
             _copyRoot.SetActive(true);

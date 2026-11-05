@@ -1,6 +1,6 @@
 {
-    "name": "net.maaaaa.candy-box.Editor",
-    "rootNamespace": "Poyo.CandyBox.Editor",
+    "name": "net.maaaaa.avatar-toolbox.Editor",
+    "rootNamespace": "Poyo.AvatarToolbox.Editor",
     "references": [],
     "includePlatforms": [
         "Editor"
@@ -12,25 +12,26 @@
     "autoReferenced": false,
     "defineConstraints": [],
     "versionDefines": [
+        { "name": "net.maaaaa.candy-box", "expression": "0.0.0", "define": "AVATAR_TOOLBOX_HAS_LEGACY" },
         {
             "name": "nadena.dev.modular-avatar",
             "expression": "1.17.0",
-            "define": "CANDY_BOX_HAS_MA"
+            "define": "AVATAR_TOOLBOX_HAS_MA"
         },
         {
             "name": "com.anatawa12.avatar-optimizer",
             "expression": "1.9.0",
-            "define": "CANDY_BOX_HAS_AAO"
+            "define": "AVATAR_TOOLBOX_HAS_AAO"
         },
         {
             "name": "com.vrchat.base",
             "expression": "3.5.0",
-            "define": "CANDY_BOX_HAS_VRCSDK"
+            "define": "AVATAR_TOOLBOX_HAS_VRCSDK"
         },
         {
             "name": "jp.suzuryg.face-emo",
             "expression": "[1.7.0,2.0.0)",
-            "define": "CANDY_BOX_HAS_FACEEMO"
+            "define": "AVATAR_TOOLBOX_HAS_FACEEMO"
         }
     ],
     "noEngineReferences": false

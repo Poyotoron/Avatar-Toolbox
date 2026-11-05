@@ -5,7 +5,7 @@ using Suzuryg.FaceEmo.Components;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.FaceEmoSplitter.Editor
+namespace Poyo.AvatarToolbox.FaceEmoSplitter.Editor
 {
     internal static class FaceEmoSplitterScanner
     {
@@ -14,7 +14,7 @@ namespace Poyo.CandyBox.FaceEmoSplitter.Editor
             error = null;
             if (EditorApplication.isPlaying)
             {
-                error = "再生中は使えません。再生を停止してください。";
+                error = "再生中は使用できません。再生を止めてください。";
                 return null;
             }
 
@@ -76,7 +76,7 @@ namespace Poyo.CandyBox.FaceEmoSplitter.Editor
                     int index = 0;
                     foreach (string candidate in pending)
                     {
-                        EditorUtility.DisplayProgressBar("Candy Box", "Prefab の系統を調べています…",
+                        EditorUtility.DisplayProgressBar("Poyo's Avatar Toolbox", "Prefab の系統を調べています…",
                             (float)index++ / Math.Max(1, pending.Count));
                         bool related = false;
                         foreach (string dependency in dependencies[candidate])

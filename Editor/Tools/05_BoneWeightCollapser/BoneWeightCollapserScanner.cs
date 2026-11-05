@@ -4,7 +4,7 @@ using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.BoneWeightCollapser.Editor
+namespace Poyo.AvatarToolbox.BoneWeightCollapser.Editor
 {
     internal static class BoneWeightCollapserScanner
     {

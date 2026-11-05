@@ -4,7 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.FaceEmoSplitter.Editor
+namespace Poyo.AvatarToolbox.FaceEmoSplitter.Editor
 {
     // NOTE: ツールを無効にすると型が消えるため、ScriptableObject ではなく JSON に保存する。
     // NOTE: JsonUtility で読み書きするフィールドだけ public にする。
@@ -84,12 +84,12 @@ namespace Poyo.CandyBox.FaceEmoSplitter.Editor
             }
             catch (Exception exception)
             {
-                Debug.LogWarning("Candy Box: 設定ファイルを読み込めませんでした: " +
+                Debug.LogWarning("Poyo's Avatar Toolbox: 設定ファイルを読み込めませんでした: " +
                     AssetDatabase.GetAssetPath(asset) + "\n" + exception.Message);
                 return null;
             }
 
-            Debug.LogWarning("Candy Box: 設定ファイルの形式に対応していません: " + AssetDatabase.GetAssetPath(asset));
+            Debug.LogWarning("Poyo's Avatar Toolbox: 設定ファイルの形式に対応していません: " + AssetDatabase.GetAssetPath(asset));
             return null;
         }
 

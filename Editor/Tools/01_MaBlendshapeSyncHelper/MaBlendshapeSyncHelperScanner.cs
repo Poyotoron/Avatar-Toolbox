@@ -4,7 +4,7 @@ using nadena.dev.modular_avatar.core;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.MaBlendshapeSyncHelper.Editor
+namespace Poyo.AvatarToolbox.MaBlendshapeSyncHelper.Editor
 {
     internal static class MaBlendshapeSyncHelperScanner
     {
@@ -31,7 +31,7 @@ namespace Poyo.CandyBox.MaBlendshapeSyncHelper.Editor
             }
             catch (Exception exception)
             {
-                error = "走査中に予期しないエラーが発生しました: " + exception.Message;
+                error = "調べている間にエラーが起きました: " + exception.Message;
                 return null;
             }
         }

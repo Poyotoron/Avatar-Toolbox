@@ -1,7 +1,7 @@
-using Poyo.CandyBox.Editor;
+using Poyo.AvatarToolbox.Editor;
 using UnityEditor;
 
-namespace Poyo.CandyBox.BoneWeightCollapser.Editor
+namespace Poyo.AvatarToolbox.BoneWeightCollapser.Editor
 {
     internal static class BoneWeightCollapserEntry
     {
@@ -10,7 +10,7 @@ namespace Poyo.CandyBox.BoneWeightCollapser.Editor
         [InitializeOnLoadMethod]
         private static void Register()
         {
-            CandyBoxToolRegistry.Register(ToolId, BoneWeightCollapserWindow.Open);
+            AvatarToolboxToolRegistry.Register(ToolId, BoneWeightCollapserWindow.Open);
         }
     }
 }

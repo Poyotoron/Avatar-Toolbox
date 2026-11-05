@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Poyo.CandyBox.PartsSetAdjuster.Editor
+namespace Poyo.AvatarToolbox.PartsSetAdjuster.Editor
 {
     internal sealed class PartsSetFaceOverlay
     {
@@ -27,7 +27,7 @@ namespace Poyo.CandyBox.PartsSetAdjuster.Editor
             Shader shader = Shader.Find("Hidden/Internal-Colored");
             if (shader == null)
             {
-                Debug.LogWarning("Candy Box: 肌の重ね描きに使うシェーダーが見つかりませんでした。");
+                Debug.LogWarning("Poyo's Avatar Toolbox: 肌の重ね描きに使うシェーダーが見つかりませんでした。");
                 return;
             }
 
@@ -35,7 +35,7 @@ namespace Poyo.CandyBox.PartsSetAdjuster.Editor
             _material = new Material(shader)
             {
                 hideFlags = HideFlags.HideAndDontSave,
-                name = "CandyBoxFaceOverlay"
+                name = "AvatarToolboxFaceOverlay"
             };
             _material.SetColor("_Color", color);
             _material.SetInt("_ZTest", (int)CompareFunction.LessEqual);
@@ -44,7 +44,7 @@ namespace Poyo.CandyBox.PartsSetAdjuster.Editor
             _hiddenMaterial = new Material(shader)
             {
                 hideFlags = HideFlags.HideAndDontSave,
-                name = "CandyBoxFaceOverlayHidden",
+                name = "AvatarToolboxFaceOverlayHidden",
                 // NOTE: 髪の深度が揃ってから隠れた部分を判定するため、最後に描く。
                 renderQueue = 4000
             };
@@ -57,14 +57,14 @@ namespace Poyo.CandyBox.PartsSetAdjuster.Editor
             _hiddenMesh = new Mesh
             {
                 hideFlags = HideFlags.HideAndDontSave,
-                name = "CandyBoxFaceOverlayHidden"
+                name = "AvatarToolboxFaceOverlayHidden"
             };
             _showHidden = showHidden;
             SetColor(color);
             _mesh = new Mesh
             {
                 hideFlags = HideFlags.HideAndDontSave,
-                name = "CandyBoxFaceOverlay"
+                name = "AvatarToolboxFaceOverlay"
             };
             try
             {

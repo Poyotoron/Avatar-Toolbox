@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using VRC.Dynamics;
 
-namespace Poyo.CandyBox.PartsSetAdjuster.Editor
+namespace Poyo.AvatarToolbox.PartsSetAdjuster.Editor
 {
     internal static class PartsSetAdjusterColliders
     {

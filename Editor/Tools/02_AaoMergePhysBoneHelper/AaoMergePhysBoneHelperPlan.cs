@@ -3,7 +3,7 @@ using Anatawa12.AvatarOptimizer;
 using UnityEngine;
 using VRC.Dynamics;
 
-namespace Poyo.CandyBox.AaoMergePhysBoneHelper.Editor
+namespace Poyo.AvatarToolbox.AaoMergePhysBoneHelper.Editor
 {
     internal sealed class AaoMergePhysBoneSource
     {

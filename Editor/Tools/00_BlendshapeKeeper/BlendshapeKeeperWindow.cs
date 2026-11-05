@@ -4,14 +4,14 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.BlendshapeKeeper.Editor
+namespace Poyo.AvatarToolbox.BlendshapeKeeper.Editor
 {
     internal sealed class BlendshapeKeeperWindow : EditorWindow
     {
         private static readonly GUIContent TitleContent =
             new GUIContent("00_Blendshape Keeper");
         private static readonly GUIContent IntroContent = new GUIContent(
-            "対象メッシュとアニメーションを指定して、ブレンドシェイプの現在値をアニメーションへ反映します。");
+            "対象メッシュとアニメーションを指定して、ブレンドシェイプの現在値をアニメーションへ適用します。");
         private static readonly GUIContent TargetMeshHeaderContent = new GUIContent("対象メッシュ");
         private static readonly GUIContent AvatarRootContent = new GUIContent("アバタールート");
         private static readonly GUIContent MissingAnimatorContent = new GUIContent(
@@ -27,7 +27,7 @@ namespace Poyo.CandyBox.BlendshapeKeeper.Editor
         private static readonly GUIContent OutputFolderContent = new GUIContent("出力フォルダ");
         private static readonly GUIContent OutputFolderPathContent = new GUIContent("パス");
         private static readonly GUIContent SelectFolderContent = new GUIContent("選択");
-        private static readonly GUIContent SuffixContent = new GUIContent("サフィックス");
+        private static readonly GUIContent SuffixContent = new GUIContent("名前の末尾");
         private static readonly GUIContent CopyWithoutChangesContent =
             new GUIContent("変更が無いアニメーションも複製する");
         private static readonly GUIContent IncludeSubfoldersContent =
@@ -44,7 +44,7 @@ namespace Poyo.CandyBox.BlendshapeKeeper.Editor
         private static readonly GUIContent PreviewButtonContent = new GUIContent("変更をプレビュー");
 
         private const string PlayingWarning =
-            "再生中は実行できません。再生を停止してください。";
+            "再生中は実行できません。再生を止めてください。";
         private const string AnimationPreviewWarning =
             "Animation ウィンドウのプレビュー中は実行できません。プレビューを終了してください。";
         private const string TargetMeshWarning = "対象メッシュを 1 つ以上指定してください。";
@@ -57,22 +57,22 @@ namespace Poyo.CandyBox.BlendshapeKeeper.Editor
             "出力フォルダが見つかりません。指定し直してください。";
         private const string NoChangesMessage = "引き上げるキーはありませんでした。";
         private const string DuplicateMeshWarning =
-            "Candy Box: 同じ対象メッシュが既に指定されています。";
+            "Poyo's Avatar Toolbox: 同じ対象メッシュが既に指定されています。";
         private const string DuplicateClipWarning =
-            "Candy Box: 同じアニメーションが既に指定されています。";
+            "Poyo's Avatar Toolbox: 同じアニメーションが既に指定されています。";
         private const string OutsideProjectWarning =
-            "Candy Box: プロジェクト内のフォルダを選択してください。";
+            "Poyo's Avatar Toolbox: プロジェクト内のフォルダを選択してください。";
         private const string OutsideProjectMessage =
             "プロジェクト内のフォルダを選択してください。";
         private const string NotAFolderMessage = "フォルダを指定してください。";
         private const string EmptyOutputPathLabel = "未指定";
         private const string ConfirmFormat = "{0} 件のキーを書き換えます。よろしいですか？";
         private const string CopyConfirmFormat =
-            "{0} 件のキーを反映したアニメーションを新しく保存します。よろしいですか？";
+            "{0} 件のキーを適用したアニメーションを新しく保存します。よろしいですか？";
         private const string ResultFormat =
-            "{0} 件のキーを {1} 個のアニメーションに反映しました。";
+            "{0} 件のキーを {1} 個のアニメーションに適用しました。";
         private const string CopyResultFormat =
-            "{0} 件のキーを反映した {1} 個のアニメーションを {2} に保存しました。";
+            "{0} 件のキーを適用した {1} 個のアニメーションを {2} に保存しました。";
         private const string RenamedFormat =
             "\n同名のファイルがあったため、{0} 件は別の名前で保存しました。";
 
@@ -478,12 +478,12 @@ namespace Poyo.CandyBox.BlendshapeKeeper.Editor
                 InvalidatePlan();
                 _avatarRootDirty = true;
                 Debug.Log(
-                    "Candy Box: " + addedCount + " 件のアニメーションを追加しました。");
+                    "Poyo's Avatar Toolbox: " + addedCount + " 件のアニメーションを追加しました。");
             }
             else
             {
                 Debug.LogWarning(
-                    "Candy Box: 追加できるアニメーションが見つかりませんでした。");
+                    "Poyo's Avatar Toolbox: 追加できるアニメーションが見つかりませんでした。");
             }
         }
 
@@ -583,7 +583,7 @@ namespace Poyo.CandyBox.BlendshapeKeeper.Editor
                     _outputFolderPath = string.Empty;
                     _outputFolderError = OutsideProjectMessage;
                     Debug.LogWarning(
-                        "Candy Box: 出力フォルダに指定できないパスです: " + selectedPath);
+                        "Poyo's Avatar Toolbox: 出力フォルダに指定できないパスです: " + selectedPath);
                     Repaint();
                 }
             }
@@ -836,7 +836,7 @@ namespace Poyo.CandyBox.BlendshapeKeeper.Editor
                     : ConfirmFormat,
                 enabledCount);
             bool confirmed = EditorUtility.DisplayDialog(
-                "Candy Box", confirmation, "適用", "キャンセル");
+                "Poyo's Avatar Toolbox", confirmation, "適用", "キャンセル");
             if (!confirmed)
             {
                 return;

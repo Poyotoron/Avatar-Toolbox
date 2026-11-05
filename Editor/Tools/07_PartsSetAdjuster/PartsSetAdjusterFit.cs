@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.PartsSetAdjuster.Editor
+namespace Poyo.AvatarToolbox.PartsSetAdjuster.Editor
 {
     internal static class PartsSetAdjusterFit
     {
@@ -71,13 +71,13 @@ namespace Poyo.CandyBox.PartsSetAdjuster.Editor
             var result = new PartsSetFitResult();
             if (target.Kind != PartsSetKind.Hair)
             {
-                result.FailureReason = "自動で合わせるは、種類が髪のときだけ使えます。";
+                result.FailureReason = "「自動で合わせる」は種類が髪のときだけ使えます。";
                 return result;
             }
 
             try
             {
-                EditorUtility.DisplayProgressBar("Candy Box", ProgressMessage, 0f);
+                EditorUtility.DisplayProgressBar("Poyo's Avatar Toolbox", ProgressMessage, 0f);
                 Vector3 up = rootRotation * Vector3.up;
                 Vector3 forward = rootRotation * Vector3.forward;
                 Vector3 right = rootRotation * Vector3.right;
@@ -302,7 +302,7 @@ namespace Poyo.CandyBox.PartsSetAdjuster.Editor
             {
                 if (_refining)
                 {
-                    EditorUtility.DisplayProgressBar("Candy Box", ProgressMessage,
+                    EditorUtility.DisplayProgressBar("Poyo's Avatar Toolbox", ProgressMessage,
                         0.3f + 0.7f * Mathf.Min(1f, _evaluationCount++ / 7500f));
                 }
 
@@ -406,7 +406,7 @@ namespace Poyo.CandyBox.PartsSetAdjuster.Editor
                     {
                         for (int iz = -1; iz <= 1; iz++)
                         {
-                            EditorUtility.DisplayProgressBar("Candy Box", ProgressMessage, 0.3f * order / total);
+                            EditorUtility.DisplayProgressBar("Poyo's Avatar Toolbox", ProgressMessage, 0.3f * order / total);
                             var candidate = new Candidate
                             {
                                 Delta = Start.Delta + Up * (CoarseStep * iy) + Forward * (CoarseStep * iz),
@@ -477,7 +477,7 @@ namespace Poyo.CandyBox.PartsSetAdjuster.Editor
                 }
 
                 best = CoordinateSearch(best, fitScale, Mathf.Max(1, Samples.Count / 4000));
-                EditorUtility.DisplayProgressBar("Candy Box", ProgressMessage, 1f);
+                EditorUtility.DisplayProgressBar("Poyo's Avatar Toolbox", ProgressMessage, 1f);
                 return best;
             }
 

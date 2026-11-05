@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using VRC.Dynamics;
 
-namespace Poyo.CandyBox.AaoMergePhysBoneHelper.Editor
+namespace Poyo.AvatarToolbox.AaoMergePhysBoneHelper.Editor
 {
     internal static class AaoMergePhysBoneHelperScanner
     {

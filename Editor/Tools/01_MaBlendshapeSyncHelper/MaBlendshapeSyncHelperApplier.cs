@@ -4,7 +4,7 @@ using nadena.dev.modular_avatar.core;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.MaBlendshapeSyncHelper.Editor
+namespace Poyo.AvatarToolbox.MaBlendshapeSyncHelper.Editor
 {
     internal struct MaBlendshapeSyncApplyResult
     {
@@ -176,7 +176,7 @@ namespace Poyo.CandyBox.MaBlendshapeSyncHelper.Editor
             if (skippedReferences > 0)
             {
                 Debug.LogWarning(
-                    "Candy Box: 参照元を解決できなかったため、" + skippedReferences +
+                    "Poyo's Avatar Toolbox: 参照元を解決できなかったため、" + skippedReferences +
                     " 件の対応をスキップしました。");
             }
 

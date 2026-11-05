@@ -3,7 +3,7 @@ using Anatawa12.AvatarOptimizer;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.AaoMergeBoneHelper.Editor
+namespace Poyo.AvatarToolbox.AaoMergeBoneHelper.Editor
 {
     internal static class AaoMergeBoneType
     {

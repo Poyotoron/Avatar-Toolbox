@@ -1,7 +1,7 @@
 {
-  "name": "net.maaaaa.candy-box",
-  "displayName": "Candy Box",
-  "version": "0.9.0",
+  "name": "net.maaaaa.avatar-toolbox",
+  "displayName": "Poyo's Avatar Toolbox",
+  "version": "0.10.0",
   "description": "アバター改変向けの小さなエディタ拡張をまとめたパッケージです。使うツールだけを有効にできます。",
   "unity": "2022.3",
   "license": "MIT",
@@ -9,7 +9,10 @@
     "name": "Poyotoron",
     "url": "https://github.com/Poyotoron"
   },
-  "url": "https://github.com/Poyotoron/Candy-Box/releases/download/0.9.0/net.maaaaa.candy-box-0.9.0.zip",
-  "documentationUrl": "https://ghp.maaaaa.net/Candy-Box/",
-  "changelogUrl": "https://github.com/Poyotoron/Candy-Box/blob/main/CHANGELOG.md"
+  "url": "https://github.com/Poyotoron/Avatar-Toolbox/releases/download/0.10.0/net.maaaaa.avatar-toolbox-0.10.0.zip",
+  "documentationUrl": "https://ghp.maaaaa.net/Avatar-Toolbox/",
+  "changelogUrl": "https://github.com/Poyotoron/Avatar-Toolbox/blob/main/CHANGELOG.md",
+  "legacyPackages": [
+    "net.maaaaa.candy-box"
+  ]
 }

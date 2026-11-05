@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRC.Dynamics;
 
-namespace Poyo.CandyBox.PartsSetAdjuster.Editor
+namespace Poyo.AvatarToolbox.PartsSetAdjuster.Editor
 {
     internal enum PartsSetKind
     {

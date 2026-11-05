@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.AaoMergeBoneHelper.Editor
+namespace Poyo.AvatarToolbox.AaoMergeBoneHelper.Editor
 {
     internal static class AaoMergeBoneHelperApplier
     {
@@ -65,7 +65,7 @@ namespace Poyo.CandyBox.AaoMergeBoneHelper.Editor
                     catch (Exception exception)
                     {
                         Debug.LogError(
-                            "Candy Box: " + gameObject.name +
+                            "Poyo's Avatar Toolbox: " + gameObject.name +
                             " への AAO Merge Bone 追加に失敗しました。\n" + exception,
                             gameObject);
                     }
@@ -88,7 +88,7 @@ namespace Poyo.CandyBox.AaoMergeBoneHelper.Editor
                     catch (Exception exception)
                     {
                         Debug.LogError(
-                            "Candy Box: " + gameObject.name +
+                            "Poyo's Avatar Toolbox: " + gameObject.name +
                             " からの AAO Merge Bone 削除に失敗しました。\n" + exception,
                             gameObject);
                     }

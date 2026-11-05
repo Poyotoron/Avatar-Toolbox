@@ -1,7 +1,7 @@
-using Poyo.CandyBox.Editor;
+using Poyo.AvatarToolbox.Editor;
 using UnityEditor;
 
-namespace Poyo.CandyBox.FaceEmoSplitter.Editor
+namespace Poyo.AvatarToolbox.FaceEmoSplitter.Editor
 {
     internal static class FaceEmoSplitterEntry
     {
@@ -10,7 +10,7 @@ namespace Poyo.CandyBox.FaceEmoSplitter.Editor
         [InitializeOnLoadMethod]
         private static void Register()
         {
-            CandyBoxToolRegistry.Register(ToolId, FaceEmoSplitterWindow.Open);
+            AvatarToolboxToolRegistry.Register(ToolId, FaceEmoSplitterWindow.Open);
         }
     }
 }

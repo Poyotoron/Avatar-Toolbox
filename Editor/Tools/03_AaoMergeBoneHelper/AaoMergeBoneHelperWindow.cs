@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-namespace Poyo.CandyBox.AaoMergeBoneHelper.Editor
+namespace Poyo.AvatarToolbox.AaoMergeBoneHelper.Editor
 {
     internal sealed class AaoMergeBoneHelperWindow : EditorWindow
     {
@@ -30,10 +30,10 @@ namespace Poyo.CandyBox.AaoMergeBoneHelper.Editor
             "始点", "このボーンをチェーンの始点にします");
         private static readonly GUIContent NoChainStartContent = new GUIContent("未選択");
         private static readonly GUIContent KeepIntervalContent = new GUIContent("保持間隔");
-        private static readonly GUIContent ChainApplyContent = new GUIContent("チェックに反映");
+        private static readonly GUIContent ChainApplyContent = new GUIContent("チェックを更新");
 
         private const string PlayingWarning =
-            "再生中は実行できません。再生を停止してください。";
+            "再生中は実行できません。再生を止めてください。";
         private const string MissingTypeWarning =
             "AAO Merge Bone のコンポーネントが見つかりません。AAO: Avatar Optimizer のバージョンを確認してください。";
         private const string TargetWarning = "対象のオブジェクトを指定してください。";
@@ -552,7 +552,7 @@ namespace Poyo.CandyBox.AaoMergeBoneHelper.Editor
             catch (Exception exception)
             {
                 Debug.LogError(
-                    "Candy Box: 適用後の AAO Merge Bone 再確認に失敗しました。\n" +
+                    "Poyo's Avatar Toolbox: 適用後の AAO Merge Bone を確認できませんでした。\n" +
                     exception,
                     _target);
             }

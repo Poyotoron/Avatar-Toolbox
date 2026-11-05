@@ -3,7 +3,7 @@ using Anatawa12.AvatarOptimizer;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.AaoMergePhysBoneHelper.Editor
+namespace Poyo.AvatarToolbox.AaoMergePhysBoneHelper.Editor
 {
     internal sealed class AaoMergePhysBoneHelperWindow : EditorWindow
     {
@@ -39,7 +39,7 @@ namespace Poyo.CandyBox.AaoMergePhysBoneHelper.Editor
         private static readonly Color CurveColor = Color.green;
 
         private const string PlayingWarning =
-            "再生中は実行できません。再生を停止してください。";
+            "再生中は実行できません。再生を止めてください。";
         private const string TargetWarning =
             "AAO Merge PhysBone が付いたオブジェクトを指定してください。";
         private const string MissingComponentWarning =
@@ -47,7 +47,7 @@ namespace Poyo.CandyBox.AaoMergePhysBoneHelper.Editor
         private const string SourceCountWarning =
             "統合対象の PhysBone が 2 つ以上必要です。";
         private const string MissingReferenceWarning =
-            "統合対象に失われた参照があります。AAO Merge PhysBone のインスペクターで確認してください。";
+            "統合対象に失われた参照があります。AAO Merge PhysBone の Inspector で確認してください。";
         private const string ChainLengthWarning =
             "統合対象でチェーンの長さが異なります。カーブの提案は目安として扱ってください。";
 
@@ -250,7 +250,7 @@ namespace Poyo.CandyBox.AaoMergePhysBoneHelper.Editor
             catch (Exception exception)
             {
                 Debug.LogError(
-                    "Candy Box: 適用後の AAO Merge PhysBone 再確認に失敗しました。\n" +
+                    "Poyo's Avatar Toolbox: 適用後の AAO Merge PhysBone を確認できませんでした。\n" +
                     exception,
                     _target);
             }

@@ -1,8 +1,8 @@
 {
-    "name": "net.maaaaa.candy-box.bone-weight-collapser.Editor",
-    "rootNamespace": "Poyo.CandyBox.BoneWeightCollapser.Editor",
+    "name": "net.maaaaa.avatar-toolbox.hair-tone-matcher.Editor",
+    "rootNamespace": "Poyo.AvatarToolbox.HairToneMatcher.Editor",
     "references": [
-        "net.maaaaa.candy-box.Editor"
+        "net.maaaaa.avatar-toolbox.Editor"
     ],
     "includePlatforms": [
         "Editor"
@@ -13,7 +13,7 @@
     "precompiledReferences": [],
     "autoReferenced": false,
     "defineConstraints": [
-        "CANDY_BOX_TOOL_05"
+        "AVATAR_TOOLBOX_TOOL_04"
     ],
     "versionDefines": [],
     "noEngineReferences": false

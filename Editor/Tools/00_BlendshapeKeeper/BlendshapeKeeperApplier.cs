@@ -3,7 +3,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.BlendshapeKeeper.Editor
+namespace Poyo.AvatarToolbox.BlendshapeKeeper.Editor
 {
     internal struct BlendshapeKeeperApplyResult
     {

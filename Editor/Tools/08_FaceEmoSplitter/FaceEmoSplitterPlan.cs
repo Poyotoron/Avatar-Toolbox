@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Suzuryg.FaceEmo.Components;
 using UnityEngine;
 
-namespace Poyo.CandyBox.FaceEmoSplitter.Editor
+namespace Poyo.AvatarToolbox.FaceEmoSplitter.Editor
 {
     internal static class FaceEmoSplitterNames
     {

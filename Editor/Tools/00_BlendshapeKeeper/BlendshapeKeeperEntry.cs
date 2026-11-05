@@ -1,7 +1,7 @@
-using Poyo.CandyBox.Editor;
+using Poyo.AvatarToolbox.Editor;
 using UnityEditor;
 
-namespace Poyo.CandyBox.BlendshapeKeeper.Editor
+namespace Poyo.AvatarToolbox.BlendshapeKeeper.Editor
 {
     /// <summary>このツールの入口を共通基盤へ登録する。</summary>
     // NOTE: 共通基盤側からこのアセンブリを参照すると、ツールを無効にした時点で
@@ -13,7 +13,7 @@ namespace Poyo.CandyBox.BlendshapeKeeper.Editor
         [InitializeOnLoadMethod]
         private static void Register()
         {
-            CandyBoxToolRegistry.Register(ToolId, BlendshapeKeeperWindow.Open);
+            AvatarToolboxToolRegistry.Register(ToolId, BlendshapeKeeperWindow.Open);
         }
     }
 }

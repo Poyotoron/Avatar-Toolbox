@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Poyo.CandyBox.Editor;
+using Poyo.AvatarToolbox.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.BlendShapeBackuper.Editor
+namespace Poyo.AvatarToolbox.BlendShapeBackuper.Editor
 {
     internal sealed class BlendShapeBackuperWindow : EditorWindow
     {
@@ -39,7 +39,8 @@ namespace Poyo.CandyBox.BlendShapeBackuper.Editor
 
         private static readonly Color SeparatorColor =
             new Color(0.45f, 0.45f, 0.45f, 0.55f);
-        private static readonly Color SelectedRowColor =
+        // NOTE: ウィンドウの生成中はテーマを読めないため、描画時に評価する。
+        private static Color SelectedRowColor =>
             EditorGUIUtility.isProSkin
                 ? new Color(0.18f, 0.38f, 0.58f, 0.65f)
                 : new Color(0.55f, 0.75f, 0.95f, 0.65f);
@@ -50,7 +51,7 @@ namespace Poyo.CandyBox.BlendShapeBackuper.Editor
         private const string IntroLabel =
             "現在のブレンドシェイプ値を保存し、キー名で照らし合わせて復元します。";
         private const string PlayingLabel =
-            "再生中は保存・復元・プレビューできません。";
+            "再生中は保存・復元・プレビューできません。再生を止めてください。";
         private const string PreviewingLabel =
             "プレビュー中です。値は一時的に書き換えられています。";
         private const string InvalidSubFolderLabel =
@@ -100,7 +101,8 @@ namespace Poyo.CandyBox.BlendShapeBackuper.Editor
         {
             titleContent = TitleContent;
             minSize = new Vector2(620f, 720f);
-            if (string.IsNullOrEmpty(_folderPath))
+            if (string.IsNullOrEmpty(_folderPath) ||
+                _folderPath == BlendShapeBackupWriter.LegacyDefaultFolder)
             {
                 _folderPath = BlendShapeBackupWriter.DefaultFolder;
             }

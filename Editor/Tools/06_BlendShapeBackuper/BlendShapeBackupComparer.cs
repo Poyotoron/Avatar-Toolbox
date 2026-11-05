@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Poyo.CandyBox.Editor;
+using Poyo.AvatarToolbox.Editor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.BlendShapeBackuper.Editor
+namespace Poyo.AvatarToolbox.BlendShapeBackuper.Editor
 {
     internal static class BlendShapeBackupComparer
     {

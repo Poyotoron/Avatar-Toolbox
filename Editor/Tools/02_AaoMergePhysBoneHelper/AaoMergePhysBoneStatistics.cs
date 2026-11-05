@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using UnityEngine;
 
-namespace Poyo.CandyBox.AaoMergePhysBoneHelper.Editor
+namespace Poyo.AvatarToolbox.AaoMergePhysBoneHelper.Editor
 {
     internal enum AaoMergePhysBoneMetric
     {

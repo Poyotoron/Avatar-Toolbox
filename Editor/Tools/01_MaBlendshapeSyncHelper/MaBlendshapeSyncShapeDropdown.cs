@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-namespace Poyo.CandyBox.MaBlendshapeSyncHelper.Editor
+namespace Poyo.AvatarToolbox.MaBlendshapeSyncHelper.Editor
 {
     internal sealed class MaBlendshapeSyncShapeDropdown : AdvancedDropdown
     {

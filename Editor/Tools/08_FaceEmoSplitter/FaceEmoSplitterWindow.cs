@@ -5,7 +5,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.FaceEmoSplitter.Editor
+namespace Poyo.AvatarToolbox.FaceEmoSplitter.Editor
 {
     internal sealed class FaceEmoSplitterWindow : EditorWindow
     {
@@ -236,7 +236,7 @@ namespace Poyo.CandyBox.FaceEmoSplitter.Editor
             EditorGUI.EndDisabledGroup();
             if (EditorApplication.isPlaying)
             {
-                EditorGUILayout.HelpBox("再生中は使えません。再生を停止してください。", MessageType.Warning);
+                EditorGUILayout.HelpBox("再生中は使用できません。再生を止めてください。", MessageType.Warning);
             }
         }
 
@@ -574,7 +574,7 @@ namespace Poyo.CandyBox.FaceEmoSplitter.Editor
             catch (Exception exception)
             {
                 Debug.LogException(exception);
-                EditorUtility.DisplayDialog("Candy Box", "設定を保存できませんでした。\n" + exception.Message, "OK");
+                EditorUtility.DisplayDialog("Poyo's Avatar Toolbox", "設定を保存できませんでした。\n" + exception.Message, "OK");
             }
         }
 
@@ -593,7 +593,7 @@ namespace Poyo.CandyBox.FaceEmoSplitter.Editor
         private void UpdateValidation()
         {
             _validation = EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling
-                ? "再生中・コンパイル中は使えません。"
+                ? "再生中またはコンパイル中は実行できません。再生を止め、コンパイルが終わるまで待ってください。"
                 : _labels == null ? "「読み込む」を押してください。" : _labels.Validate();
             Repaint();
         }
@@ -603,7 +603,7 @@ namespace Poyo.CandyBox.FaceEmoSplitter.Editor
             UpdateValidation();
             if (_validation != null)
             {
-                EditorUtility.DisplayDialog("Candy Box", _validation, "OK");
+                EditorUtility.DisplayDialog("Poyo's Avatar Toolbox", _validation, "OK");
                 return;
             }
 
@@ -630,7 +630,7 @@ namespace Poyo.CandyBox.FaceEmoSplitter.Editor
                 message.Append("\nほか ").Append(plan.Count - 10).Append(" 件");
             }
 
-            if (!EditorUtility.DisplayDialog("Candy Box", message.ToString(), "適用", "キャンセル"))
+            if (!EditorUtility.DisplayDialog("Poyo's Avatar Toolbox", message.ToString(), "適用", "キャンセル"))
             {
                 return;
             }
@@ -673,7 +673,7 @@ namespace Poyo.CandyBox.FaceEmoSplitter.Editor
 
                     if (!FaceEmoSplitterGenerator.Generate(label, out string error))
                     {
-                        EditorUtility.DisplayDialog("Candy Box", error, "OK");
+                        EditorUtility.DisplayDialog("Poyo's Avatar Toolbox", error, "OK");
                         return;
                     }
 
@@ -689,7 +689,7 @@ namespace Poyo.CandyBox.FaceEmoSplitter.Editor
                 saved = FaceEmoSplitterPlacer.Place(_tree, _labels, out string placementError);
                 if (placementError != null)
                 {
-                    EditorUtility.DisplayDialog("Candy Box", placementError, "OK");
+                    EditorUtility.DisplayDialog("Poyo's Avatar Toolbox", placementError, "OK");
                 }
                 else
                 {
@@ -708,7 +708,7 @@ namespace Poyo.CandyBox.FaceEmoSplitter.Editor
             catch (Exception exception)
             {
                 Debug.LogException(exception);
-                EditorUtility.DisplayDialog("Candy Box", "表情を適用できませんでした。\n" + exception.Message, "OK");
+                EditorUtility.DisplayDialog("Poyo's Avatar Toolbox", "表情を適用できませんでした。\n" + exception.Message, "OK");
             }
             finally
             {

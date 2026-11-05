@@ -4,13 +4,13 @@ using UnityEditor;
 using UnityEditor.Build;
 using UnityEngine;
 
-namespace Poyo.CandyBox.Editor
+namespace Poyo.AvatarToolbox.Editor
 {
-    internal static class CandyBoxDefines
+    internal static class AvatarToolboxDefines
     {
         // NOTE: プラットフォームを切り替えたときにツールが消えないよう、
         //       VRChat がビルド対象にする 3 つすべてへ同じシンボルを書く。
-        private static readonly NamedBuildTarget[] Targets =
+        internal static readonly NamedBuildTarget[] Targets =
         {
             NamedBuildTarget.Standalone,
             NamedBuildTarget.Android,
@@ -22,7 +22,7 @@ namespace Poyo.CandyBox.Editor
         {
             if (symbols == null || results == null || symbols.Count != results.Length)
             {
-                Debug.LogError("Candy Box: 有効状態の読み取り先が正しくありません。");
+                Debug.LogError("Poyo's Avatar Toolbox: 有効状態の読み取り先が正しくありません。");
                 return;
             }
 
@@ -42,7 +42,7 @@ namespace Poyo.CandyBox.Editor
         {
             if (symbols == null || enabled == null || symbols.Count != enabled.Count)
             {
-                Debug.LogError("Candy Box: シンボルと有効状態の数が一致しません。");
+                Debug.LogError("Poyo's Avatar Toolbox: シンボルと有効状態の数が一致しません。");
                 return;
             }
 

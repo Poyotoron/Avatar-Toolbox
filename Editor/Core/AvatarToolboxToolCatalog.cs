@@ -1,6 +1,6 @@
-namespace Poyo.CandyBox.Editor
+namespace Poyo.AvatarToolbox.Editor
 {
-    internal sealed class CandyBoxToolEntry
+    internal sealed class AvatarToolboxToolEntry
     {
         internal readonly string Id;
         internal readonly string DisplayName;
@@ -11,7 +11,7 @@ namespace Poyo.CandyBox.Editor
 
         private readonly string _defineSymbol;
 
-        internal CandyBoxToolEntry(string id, string displayName, string summary, string description)
+        internal AvatarToolboxToolEntry(string id, string displayName, string summary, string description)
         {
             Id = id;
             DisplayName = displayName;
@@ -19,10 +19,10 @@ namespace Poyo.CandyBox.Editor
             Description = description;
             RequirementLabel = null;
             IsAvailable = true;
-            _defineSymbol = CandyBoxInfo.DefineSymbolPrefix + id;
+            _defineSymbol = AvatarToolboxInfo.DefineSymbolPrefix + id;
         }
 
-        internal CandyBoxToolEntry(
+        internal AvatarToolboxToolEntry(
             string id,
             string displayName,
             string summary,
@@ -36,7 +36,7 @@ namespace Poyo.CandyBox.Editor
             Description = description;
             RequirementLabel = requirementLabel;
             IsAvailable = isAvailable;
-            _defineSymbol = CandyBoxInfo.DefineSymbolPrefix + id;
+            _defineSymbol = AvatarToolboxInfo.DefineSymbolPrefix + id;
         }
 
         internal string DefineSymbol
@@ -45,29 +45,29 @@ namespace Poyo.CandyBox.Editor
         }
     }
 
-    internal static class CandyBoxToolCatalog
+    internal static class AvatarToolboxToolCatalog
     {
         // NOTE: const bool にすると片方の分岐が到達不能になるため、読み取り専用値にする。
-#if CANDY_BOX_HAS_MA
+#if AVATAR_TOOLBOX_HAS_MA
         private static readonly bool ModularAvatarAvailable = true;
 #else
         private static readonly bool ModularAvatarAvailable = false;
 #endif
 
-#if CANDY_BOX_HAS_AAO
+#if AVATAR_TOOLBOX_HAS_AAO
         private static readonly bool AvatarOptimizerAvailable = true;
 #else
         private static readonly bool AvatarOptimizerAvailable = false;
 #endif
 
-#if CANDY_BOX_HAS_VRCSDK
+#if AVATAR_TOOLBOX_HAS_VRCSDK
         private static readonly bool VrchatSdkAvailable = true;
 #else
         private static readonly bool VrchatSdkAvailable = false;
 #endif
         private const string VrchatSdkRequirement =
             "VRChat SDK - Base 3.5.0 以降";
-#if CANDY_BOX_HAS_FACEEMO
+#if AVATAR_TOOLBOX_HAS_FACEEMO
         private static readonly bool FaceEmoAvailable = true;
 #else
         private static readonly bool FaceEmoAvailable = false;
@@ -94,12 +94,12 @@ Variant の系統を木で表示し、ラベルを付けたまとまりごとに
 表情を再生した瞬間に顔の改変が打ち消されるのを防ぐためのツールです。";
 
         private static readonly string MaBlendshapeSyncHelperDescription =
-            @"衣装のシェイプキーを素体のシェイプキーへ追従させる設定を、まとめて作ります。
-素体と同じ名前のシェイプキーを衣装側から探し、チェックを付けたものだけを
-MA Blendshape Sync の設定として書き込みます。名前が違うものは手動で紐付けられます。";
+            @"衣装のブレンドシェイプを素体のブレンドシェイプへ追従させる設定を、まとめて作ります。
+素体と同じ名前のブレンドシェイプを衣装側から探し、チェックを付けたものだけを
+MA Blendshape Sync の設定として書き込みます。名前が違うものは手動で対応を指定できます。";
 
         private static readonly string AaoMergePhysBoneHelperDescription =
-            @"複数の PhysBone を 1 つに統合するとき、値が食い違うプロパティを洗い出します。
+            @"複数の PhysBone を 1 つに統合するとき、値が違うプロパティを調べます。
 統合対象それぞれの値を一覧にし、最小・最大・平均・中央・最頻から選んだ値を
 AAO Merge PhysBone の override として書き込みます。カーブにも対応しています。";
 
@@ -121,59 +121,59 @@ lilToon と Poiyomi のマテリアルに対応します。導入は必須では
         private static readonly string BlendShapeBackuperDescription =
             @"メッシュのブレンドシェイプの値を、キー名と対応付けて保存します。
 アバターのアップデートでキーの並びが変わっても、保存した値を名前で照らし合わせて戻せます。
-改変中のチェックポイントとしても使えます。";
+改変中の状態を残しておくこともできます。";
 
-        internal static readonly CandyBoxToolEntry[] Tools =
+        internal static readonly AvatarToolboxToolEntry[] Tools =
         {
-            new CandyBoxToolEntry(
+            new AvatarToolboxToolEntry(
                 "00",
                 "00_Blendshape Keeper",
                 "表情アニメで改変したブレンドシェイプが戻るのを防ぎます",
                 BlendshapeKeeperDescription),
-            new CandyBoxToolEntry(
+            new AvatarToolboxToolEntry(
                 "01",
                 "01_Helper for MA Blendshape Sync",
-                "衣装のシェイプキーを素体へ追従させる設定をまとめて作ります",
+                "衣装のブレンドシェイプを素体へ追従させる設定をまとめて作ります",
                 MaBlendshapeSyncHelperDescription,
                 ModularAvatarRequirement,
                 ModularAvatarAvailable),
-            new CandyBoxToolEntry(
+            new AvatarToolboxToolEntry(
                 "02",
                 "02_Helper for AAO Merge PhysBone",
                 "統合する PhysBone の値を比べ、override する値を提案します",
                 AaoMergePhysBoneHelperDescription,
                 AvatarOptimizerRequirement,
                 AvatarOptimizerAvailable),
-            new CandyBoxToolEntry(
+            new AvatarToolboxToolEntry(
                 "03",
                 "03_Helper for AAO Merge Bone",
                 "ボーンを親へ統合する設定を、ツリーからまとめて切り替えます",
                 AaoMergeBoneHelperDescription,
                 AvatarOptimizerRequirement,
                 AvatarOptimizerAvailable),
-            new CandyBoxToolEntry(
+            new AvatarToolboxToolEntry(
                 "04",
                 "04_Hair Tone Matcher",
                 "差し替えた髪の色味を、元の髪に合わせます",
                 HairToneMatcherDescription),
-            new CandyBoxToolEntry(
+            new AvatarToolboxToolEntry(
                 "05",
                 "05_Bone Weight Collapser",
-                "不要なボーンのウェイトを、別のボーンへ寄せます",
+                "不要なボーンのウェイトを、別のボーンへ移します",
                 BoneWeightCollapserDescription),
-            new CandyBoxToolEntry(
+            new AvatarToolboxToolEntry(
                 "06",
                 "06_BlendShape Backuper",
                 "ブレンドシェイプの値を保存し、あとから復元します",
                 BlendShapeBackuperDescription),
-            new CandyBoxToolEntry(
+            new AvatarToolboxToolEntry(
                 "07",
                 "07_Parts Set Adjuster",
                 "別のアバター向けのパーツを、体に合わせて取り付けます",
                 PartsSetAdjusterDescription,
                 VrchatSdkRequirement,
                 VrchatSdkAvailable),
-            new CandyBoxToolEntry(
+            new AvatarToolboxToolEntry(
                 "08",
                 "08_FaceEmo Splitter",
                 "FaceEmo の表情を、Prefab Variant ごとに分けて適用します",
@@ -182,7 +182,7 @@ lilToon と Poiyomi のマテリアルに対応します。導入は必須では
                 FaceEmoAvailable),
         };
 
-        internal static CandyBoxToolEntry Find(string id)
+        internal static AvatarToolboxToolEntry Find(string id)
         {
             for (int i = 0; i < Tools.Length; i++)
             {

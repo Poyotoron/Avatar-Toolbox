@@ -1,7 +1,7 @@
-using Poyo.CandyBox.Editor;
+using Poyo.AvatarToolbox.Editor;
 using UnityEditor;
 
-namespace Poyo.CandyBox.HairToneMatcher.Editor
+namespace Poyo.AvatarToolbox.HairToneMatcher.Editor
 {
     internal static class HairToneMatcherEntry
     {
@@ -10,7 +10,7 @@ namespace Poyo.CandyBox.HairToneMatcher.Editor
         [InitializeOnLoadMethod]
         private static void Register()
         {
-            CandyBoxToolRegistry.Register(ToolId, HairToneMatcherWindow.Open);
+            AvatarToolboxToolRegistry.Register(ToolId, HairToneMatcherWindow.Open);
         }
     }
 }

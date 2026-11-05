@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using VRC.Dynamics;
 
-namespace Poyo.CandyBox.AaoMergePhysBoneHelper.Editor
+namespace Poyo.AvatarToolbox.AaoMergePhysBoneHelper.Editor
 {
     internal static class AaoMergePhysBoneHelperApplier
     {
@@ -36,7 +36,7 @@ namespace Poyo.CandyBox.AaoMergePhysBoneHelper.Editor
                 catch (Exception exception)
                 {
                     Debug.LogError(
-                        "Candy Box: " + propertyPlan.Property.DisplayName +
+                        "Poyo's Avatar Toolbox: " + propertyPlan.Property.DisplayName +
                         " の override に失敗しました。\n" + exception,
                         mergePhysBone);
                 }

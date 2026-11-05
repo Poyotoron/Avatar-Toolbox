@@ -1,7 +1,7 @@
-using Poyo.CandyBox.Editor;
+using Poyo.AvatarToolbox.Editor;
 using UnityEditor;
 
-namespace Poyo.CandyBox.PartsSetAdjuster.Editor
+namespace Poyo.AvatarToolbox.PartsSetAdjuster.Editor
 {
     internal static class PartsSetAdjusterEntry
     {
@@ -9,7 +9,7 @@ namespace Poyo.CandyBox.PartsSetAdjuster.Editor
         [InitializeOnLoadMethod]
         private static void Register()
         {
-            CandyBoxToolRegistry.Register(ToolId, PartsSetAdjusterWindow.Open);
+            AvatarToolboxToolRegistry.Register(ToolId, PartsSetAdjusterWindow.Open);
         }
     }
 }

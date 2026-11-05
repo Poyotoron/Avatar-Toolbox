@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.AaoMergePhysBoneHelper.Editor
+namespace Poyo.AvatarToolbox.AaoMergePhysBoneHelper.Editor
 {
     internal static class AaoMergePhysBoneCurveMerger
     {

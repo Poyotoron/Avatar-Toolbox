@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.BlendshapeKeeper.Editor
+namespace Poyo.AvatarToolbox.BlendshapeKeeper.Editor
 {
     /// <summary>プレビュー用クリップを作る。生成物の破棄は呼び出し側が行う。</summary>
     internal static class BlendshapeKeeperPreviewClip
