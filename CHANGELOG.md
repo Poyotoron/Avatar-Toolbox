@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.10.0] - 2026-11-05
+
+Renamed from Candy Box to Poyo's Avatar Toolbox. The tools work the same way.
+
+### Changed
+
+- Renamed the package. The display name is "Poyo's Avatar Toolbox", the package ID is `net.maaaaa.avatar-toolbox`, and the settings window opens from `Tools > Poyo's Avatar Toolbox`. The repository moved to [Poyotoron/Avatar-Toolbox](https://github.com/Poyotoron/Avatar-Toolbox) and the documentation to [https://ghp.maaaaa.net/Avatar-Toolbox/](https://ghp.maaaaa.net/Avatar-Toolbox/).
+- Candy Box is removed automatically. `legacyPackages` lists the old ID, so VCC / ALCOM removes Candy Box when this version is added. While both are in the same project, the Console shows a warning once asking you to remove Candy Box.
+- Tools enabled in Candy Box stay enabled. The scripting define symbols `CANDY_BOX_TOOL_NN` are replaced with `AVATAR_TOOLBOX_TOOL_NN` in the same place.
+- The tool data folder moved from `Assets/zzz_pytr/CandyBox/` to `Assets/zzz_pytr/Avatar-Toolbox/`. The folder is moved with its GUIDs, so blendshape backups saved by Candy Box keep working. If both folders exist, nothing is moved and the Console shows a warning.
+- Blendshape Backuper saves to `Assets/zzz_pytr/Avatar-Toolbox/BlendShapeBackups` by default.
+- Reworded text in the windows, for example "シェイプキー" is now "ブレンドシェイプ" and "めり込みチェック" is now "めり込みの確認".
+
 ## [0.9.0] - 2026-10-20
 
 ### Added
