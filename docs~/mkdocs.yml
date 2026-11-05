@@ -1,6 +1,6 @@
-site_name: Candy Box
-site_url: https://ghp.maaaaa.net/Candy-Box/
-repo_url: https://github.com/Poyotoron/Candy-Box
+site_name: "Poyo's Avatar Toolbox"
+site_url: https://ghp.maaaaa.net/Avatar-Toolbox/
+repo_url: https://github.com/Poyotoron/Avatar-Toolbox
 site_dir: site
 
 theme:
@@ -48,7 +48,7 @@ extra_css:
   - stylesheets/extra.css
 
 extra:
-  candy_box_version: !ENV [CANDY_BOX_VERSION, dev]
+  package_version: !ENV [PACKAGE_VERSION, dev]
 
 nav:
   - はじめに: index.md
