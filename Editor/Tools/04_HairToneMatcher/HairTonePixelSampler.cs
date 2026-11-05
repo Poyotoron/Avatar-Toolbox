@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Poyo.CandyBox.HairToneMatcher.Editor
+namespace Poyo.AvatarToolbox.HairToneMatcher.Editor
 {
     internal static class HairTonePixelSampler
     {

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using VRC.Dynamics;
 
-namespace Poyo.CandyBox.PartsSetAdjuster.Editor
+namespace Poyo.AvatarToolbox.PartsSetAdjuster.Editor
 {
     internal sealed class PartsSetAdjusterWindow : EditorWindow
     {
@@ -21,7 +21,7 @@ namespace Poyo.CandyBox.PartsSetAdjuster.Editor
         private static readonly GUIContent[] KindContents = { new GUIContent("髪"), new GUIContent("髪以外") };
         private static readonly GUIContent[] ReferencePartContents = System.Array.ConvertAll(
             PartsSetAdjusterTarget.ReferencePartNames, name => new GUIContent(name));
-        private static readonly GUIContent HairOnlyContent = new GUIContent("自動で合わせるは、種類が髪のときだけ使えます。");
+        private static readonly GUIContent HairOnlyContent = new GUIContent("「自動で合わせる」は種類が髪のときだけ使えます。");
         private static readonly GUIContent ColorContent = new GUIContent("色");
         private static readonly GUIContent ShowHiddenContent = new GUIContent("パーツに隠れた部分も表示");
         private static readonly GUIContent PenetrationDisplayContent = new GUIContent("表し方");
@@ -77,7 +77,7 @@ namespace Poyo.CandyBox.PartsSetAdjuster.Editor
         };
 
         private const string RootMovedMessage = "アバターが動いたため、「基準をいまの姿勢にする」を押してください。";
-        private const string StalePenetrationMessage = "チェックのあとで動かしました。もう一度チェックしてください。";
+        private const string StalePenetrationMessage = "確認したあとに動かしました。もう一度確認してください。";
         private const string StaleColliderMessage = "確認のあとで位置を動かしました。もう一度確認してください。";
 
         [SerializeField] private SkinnedMeshRenderer _referenceMesh;
@@ -578,8 +578,8 @@ namespace Poyo.CandyBox.PartsSetAdjuster.Editor
         private void DrawCheck()
         {
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("めり込みチェック", EditorStyles.boldLabel);
-            if (GUILayout.Button("チェック"))
+            EditorGUILayout.LabelField("めり込みの確認", EditorStyles.boldLabel);
+            if (GUILayout.Button("確認"))
             {
                 OnPoseCommitted();
             }
@@ -665,14 +665,14 @@ namespace Poyo.CandyBox.PartsSetAdjuster.Editor
                 Shader shader = Shader.Find("Hidden/Internal-Colored");
                 if (shader == null)
                 {
-                    Debug.LogWarning("Candy Box: めり込みの表示に使うシェーダーが見つかりませんでした。");
+                    Debug.LogWarning("Poyo's Avatar Toolbox: めり込みの表示に使うシェーダーが見つかりませんでした。");
                     return;
                 }
 
                 _penetrationMaterial = new Material(shader)
                 {
                     hideFlags = HideFlags.HideAndDontSave,
-                    name = "CandyBoxPenetrationFaces",
+                    name = "AvatarToolboxPenetrationFaces",
                     renderQueue = 4001
                 };
                 _penetrationMaterial.SetColor("_Color", new Color(1f, 0.15f, 0.15f, 0.55f));
@@ -774,7 +774,7 @@ namespace Poyo.CandyBox.PartsSetAdjuster.Editor
 
         private void MigrateColliders()
         {
-            if (!EditorUtility.DisplayDialog("Candy Box", _migrationConfirmation, "移行", "キャンセル"))
+            if (!EditorUtility.DisplayDialog("Poyo's Avatar Toolbox", _migrationConfirmation, "移行", "キャンセル"))
             {
                 return;
             }

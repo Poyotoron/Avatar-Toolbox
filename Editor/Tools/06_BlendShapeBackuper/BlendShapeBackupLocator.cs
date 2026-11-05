@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Poyo.CandyBox.Editor;
+using Poyo.AvatarToolbox.Editor;
 using UnityEditor;
 
-namespace Poyo.CandyBox.BlendShapeBackuper.Editor
+namespace Poyo.AvatarToolbox.BlendShapeBackuper.Editor
 {
     internal static class BlendShapeBackupLocator
     {

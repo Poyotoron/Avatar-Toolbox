@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Poyo.CandyBox.HairToneMatcher.Editor
+namespace Poyo.AvatarToolbox.HairToneMatcher.Editor
 {
     internal sealed class HairToneMaterialState
     {

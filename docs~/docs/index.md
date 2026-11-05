@@ -1,68 +1,40 @@
 # はじめに
 
-**Candy Box** は、VRChat のアバター改変で使う**小さな Unity Editor 拡張の詰め合わせ**です。
+Poyo's Avatar Toolbox は、VRChat のアバター改変で使う小さなエディタ拡張をまとめたパッケージです。使うツールだけを有効にして使います。
 
-「あると便利だけれど、単体でパッケージにするほどではない」道具をひとつにまとめ、
-**使うものだけを有効にして**利用します。
+## ツールの一覧
 
-## 使うツールだけを有効にします
-
-導入した直後は、**すべてのツールが無効**です。
-設定ウィンドウでチェックを入れて「適用」を押したものだけがコンパイルされます。
-
-!!! success "使わないツールは、コンパイル時間に一切影響しません"
-    無効なツールはスクリプトのコンパイル対象から完全に外れます。
-    「全部入りだから重い」ということが起きないように、この仕組みにしています。
-
-有効・無効の状態は Unity のプロジェクト設定に保存されるため、
-バージョン管理でチームに共有されます。
-
-## 収録しているツール
-
-| ツール | 何をするか | 追加で必要なもの |
+| ツール | 内容 | 必要なパッケージ |
 |---|---|---|
-| [00_Blendshape Keeper](blendshape-keeper.md) | 表情アニメーションで改変したブレンドシェイプが元に戻るのを防ぐ | なし |
-| [01_Helper for MA Blendshape Sync](ma-blendshape-sync.md) | 衣装のシェイプキーを素体へ追従させる設定をまとめて作る | Modular Avatar 1.17.0 以降 |
-| [02_Helper for AAO Merge PhysBone](merge-physbone.md) | 統合する PhysBone の値を比べ、override 値を提案する | AAO: Avatar Optimizer 1.9.0 以降 |
-| [03_Helper for AAO Merge Bone](merge-bone.md) | ボーンの統合設定をツリーからまとめて切り替える | AAO: Avatar Optimizer 1.9.0 以降 |
-| [04_Hair Tone Matcher](hair-tone-matcher.md) | 差し替えた髪の色味を元の髪へ近づける | なし（lilToon または Poiyomi のマテリアルが対象） |
-| [05_Bone Weight Collapser](bone-weight-collapser.md) | 不要なボーンのウェイトを別のボーンへ寄せる | なし |
-| [06_BlendShape Backuper](blendshape-backuper.md) | ブレンドシェイプの値を保存し、あとから復元する | なし |
-| [07_Parts Set Adjuster](parts-set-adjuster.md) | 別のアバター向けのパーツを、体に合わせて取り付ける | VRChat SDK - Base 3.5.0 以降 |
+| [00_Blendshape Keeper](blendshape-keeper.md) | 表情アニメーションで、改変したブレンドシェイプの値が戻らないようにする | なし |
+| [01_Helper for MA Blendshape Sync](ma-blendshape-sync.md) | 衣装のブレンドシェイプを素体に追従させる MA Blendshape Sync の設定を、まとめて作る | Modular Avatar 1.17.0 以降 |
+| [02_Helper for AAO Merge PhysBone](merge-physbone.md) | 統合する PhysBone の値を比べ、override する値を提案する | AAO: Avatar Optimizer 1.9.0 以降 |
+| [03_Helper for AAO Merge Bone](merge-bone.md) | AAO Merge Bone の設定を、ボーンのツリーからまとめて切り替える | AAO: Avatar Optimizer 1.9.0 以降 |
+| [04_Hair Tone Matcher](hair-tone-matcher.md) | 差し替えた髪の色を、元の髪の色に近づける | なし（新しい髪のマテリアルが lilToon か Poiyomi） |
+| [05_Bone Weight Collapser](bone-weight-collapser.md) | あるボーンのウェイトを、別のボーンに移す | なし |
+| [06_BlendShape Backuper](blendshape-backuper.md) | ブレンドシェイプの値を保存し、あとで戻す | なし |
+| [07_Parts Set Adjuster](parts-set-adjuster.md) | 別のアバター用の髪や小物を、体に合わせて取り付ける | VRChat SDK - Base 3.5.0 以降 |
 | [08_FaceEmo Splitter](face-emo-splitter.md) | FaceEmo の表情を、Prefab Variant ごとに分けて適用する | FaceEmo 1.7.0 以降（2.x は未対応） |
 
-## 共通する考え方
+入れた直後は、どのツールも無効です。[設定ウィンドウ](settings.md)で有効にします。無効のツールはコンパイルされません。
 
-このパッケージのツールは、次の約束のもとで動きます。
+![設定ウィンドウ](images/at-settings-overview.png){ .shot loading=lazy }
 
-!!! info "確認してから「適用」を押すまで、何も変わりません"
-    どのツールも「走査 → 内容の確認 → 適用」の 3 段階です。
-    ウィンドウを開いただけ、走査しただけでは、シーンにもアセットにも一切書き込みません。
+## 共通の動き
 
-| 約束 | 内容 |
-|---|---|
-| 独自のコンポーネントを増やさない | Candy Box 専用のコンポーネントをアバターに付けることはありません |
-| 実行時には何もしない | すべてエディタ専用です。ビルド後の挙動には関与しません |
-| 元に戻せる | 適用した変更は「元に戻す（Undo）」で取り消せます（一部の例外は各ページに明記しています） |
-| 勝手にファイルを作らない | ファイルを生成するのは、出力先を指定したときだけです |
+- どのツールも、対象を指定して内容を確かめ、「適用」を押したときに変更します。ウィンドウを開いたり、確認のボタンを押したりしただけでは、シーンもアセットも変わりません。
+- アバターに独自のコンポーネントを追加しません。すべてエディタ専用です。
+- 適用した変更は、ほとんどが Undo（Ctrl+Z）で取り消せます。取り消せないものは各ページに書いています。
+- ファイルを作るのは、出力先を指定したときだけです。
 
-!!! warning "重要なプロジェクトでは、事前のバックアップを推奨します"
-    Undo で戻せる操作でも、Unity の再起動やスクリプトの再コンパイルをまたぐと戻せなくなります。
-    大切な作業の前には、バージョン管理でのコミットやプロジェクトの複製をおすすめします。
+Undo の履歴は、Unity を再起動したり、スクリプトが再コンパイルされたりすると消えます。大事な作業の前には、コミットするかプロジェクトを複製してください。
 
-## どこから読むか
+## スクリーンショットについて
 
-| 目的 | ページ |
-|---|---|
-| 導入したい | [インストール](install.md) |
-| ツールの有効・無効を切り替えたい | [設定ウィンドウ](settings.md) |
-| 表情で改変が戻ってしまう | [00_Blendshape Keeper](blendshape-keeper.md) |
-| 衣装が素体の体型に追従しない | [01_Helper for MA Blendshape Sync](ma-blendshape-sync.md) |
-| PhysBone の統合で override を求められた | [02_Helper for AAO Merge PhysBone](merge-physbone.md) |
-| ボーンの統合設定が多くて管理できない | [03_Helper for AAO Merge Bone](merge-bone.md) |
-| 差し替えた髪の色が合わない | [04_Hair Tone Matcher](hair-tone-matcher.md) |
-| 袖や衣装が指などのボーンに引きずられる | [05_Bone Weight Collapser](bone-weight-collapser.md) |
-| アップデートでブレンドシェイプの調整が壊れそう | [06_BlendShape Backuper](blendshape-backuper.md) |
-| 非対応の髪や帽子を載せたら、沈んだり体にめり込んだりする | [07_Parts Set Adjuster](parts-set-adjuster.md) |
-| 子の Variant で FaceEmo を適用したら、親の表情まで変わった | [08_FaceEmo Splitter](face-emo-splitter.md) |
-| うまく動かない | [困ったときは](troubleshooting.md) |
+このドキュメントのスクリーンショットには、次のアセットを使っています。
+
+| 種類 | アセット | 配布ページ |
+|---|---|---|
+| アバター | Suiha | <https://dockyard.booth.pm/items/7534638> |
+| 衣装 | 白凪館のリボンフリルメイド | <https://387.booth.pm/items/8995256> |
+| 髪 | H24_宵編みロング | <https://kiriha-astra.booth.pm/items/7773808> |

@@ -1,8 +1,8 @@
 {
-    "name": "net.maaaaa.candy-box.aao-merge-physbone-helper.Editor",
-    "rootNamespace": "Poyo.CandyBox.AaoMergePhysBoneHelper.Editor",
+    "name": "net.maaaaa.avatar-toolbox.aao-merge-physbone-helper.Editor",
+    "rootNamespace": "Poyo.AvatarToolbox.AaoMergePhysBoneHelper.Editor",
     "references": [
-        "net.maaaaa.candy-box.Editor",
+        "net.maaaaa.avatar-toolbox.Editor",
         "com.anatawa12.avatar-optimizer.runtime"
     ],
     "includePlatforms": [
@@ -18,14 +18,14 @@
     ],
     "autoReferenced": false,
     "defineConstraints": [
-        "CANDY_BOX_TOOL_02",
-        "CANDY_BOX_HAS_AAO"
+        "AVATAR_TOOLBOX_TOOL_02",
+        "AVATAR_TOOLBOX_HAS_AAO"
     ],
     "versionDefines": [
         {
             "name": "com.anatawa12.avatar-optimizer",
             "expression": "1.9.0",
-            "define": "CANDY_BOX_HAS_AAO"
+            "define": "AVATAR_TOOLBOX_HAS_AAO"
         }
     ],
     "noEngineReferences": false

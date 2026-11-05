@@ -1,10 +1,10 @@
 using System;
 using System.IO;
-using Poyo.CandyBox.Editor;
+using Poyo.AvatarToolbox.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.BlendShapeBackuper.Editor
+namespace Poyo.AvatarToolbox.BlendShapeBackuper.Editor
 {
     internal sealed class BlendShapeBackupSaveResult
     {
@@ -18,8 +18,10 @@ namespace Poyo.CandyBox.BlendShapeBackuper.Editor
 
     internal static class BlendShapeBackupWriter
     {
+        internal const string LegacyDefaultFolder = "Assets/zzz_pytr/CandyBox/BlendShapeBackups";
+
         internal const string DefaultFolder =
-            "Assets/zzz_pytr/CandyBox/BlendShapeBackups";
+            "Assets/zzz_pytr/Avatar-Toolbox/BlendShapeBackups";
         private const string CapturedAtFormat = "yyyy-MM-dd HH:mm:ss";
         private const string FileNameTimeFormat = "yyyyMMdd_HHmmss";
         private const string InvalidFolderLabel =
@@ -28,7 +30,7 @@ namespace Poyo.CandyBox.BlendShapeBackuper.Editor
             "サブフォルダ名に使えない文字が含まれています。";
         private const string CreateFolderFailedLabel =
             "保存フォルダを作成できませんでした。";
-        private const string PlayingLabel = "再生中は保存できません。";
+        private const string PlayingLabel = "再生中は保存できません。再生を止めてください。";
         private const string MeshChangedLabel =
             "対象のメッシュが変更されました。対象を指定し直してください。";
         private const string FallbackFileName = "BlendShapeBackup";

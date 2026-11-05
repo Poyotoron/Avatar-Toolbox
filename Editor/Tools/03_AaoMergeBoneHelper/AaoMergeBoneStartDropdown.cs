@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-namespace Poyo.CandyBox.AaoMergeBoneHelper.Editor
+namespace Poyo.AvatarToolbox.AaoMergeBoneHelper.Editor
 {
     internal sealed class AaoMergeBoneStartDropdown : AdvancedDropdown
     {

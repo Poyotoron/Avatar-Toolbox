@@ -47,7 +47,7 @@ jobs:
               Path("package.json").read_text(encoding="utf-8")
           )["version"]
           with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as env_file:
-              env_file.write(f"CANDY_BOX_VERSION={version}\n")
+              env_file.write(f"PACKAGE_VERSION={version}\n")
           PY
 
       - name: Configure Pages

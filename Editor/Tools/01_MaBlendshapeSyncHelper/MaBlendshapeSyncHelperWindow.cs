@@ -4,14 +4,14 @@ using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-namespace Poyo.CandyBox.MaBlendshapeSyncHelper.Editor
+namespace Poyo.AvatarToolbox.MaBlendshapeSyncHelper.Editor
 {
     internal sealed class MaBlendshapeSyncHelperWindow : EditorWindow
     {
         private static readonly GUIContent TitleContent =
             new GUIContent("01_Helper for MA Blendshape Sync");
         private static readonly GUIContent IntroContent = new GUIContent(
-            "素体と同じ名前のシェイプキーを衣装側から探し、追従設定をまとめて作ります。");
+            "素体と同じ名前のブレンドシェイプを衣装側から探し、追従設定をまとめて作ります。");
         private static readonly GUIContent SourceHeaderContent = new GUIContent("素体メッシュ");
         private static readonly GUIContent RemoveContent = new GUIContent("×");
         private static readonly GUIContent AddContent = new GUIContent("+ 追加");
@@ -25,28 +25,28 @@ namespace Poyo.CandyBox.MaBlendshapeSyncHelper.Editor
         private static readonly GUIContent SelectAllContent = new GUIContent("すべて選択");
         private static readonly GUIContent ClearAllContent = new GUIContent("すべて解除");
         private static readonly GUIContent ManualLinkContent =
-            new GUIContent("衣装側の名前で一括紐付け");
+            new GUIContent("衣装側の名前でまとめて対応付け");
         private static readonly GUIContent LinkAllContent = new GUIContent("まとめて追加");
         private static readonly GUIContent ConfiguredContent = new GUIContent("設定済み");
         private static readonly GUIContent SearchContent = new GUIContent("名前で絞り込み");
         private static readonly GUIContent AddSourceShapeContent =
-            new GUIContent("素体のシェイプキーを追加");
+            new GUIContent("素体のブレンドシェイプを追加");
         private static readonly GUIContent UnselectedShapeContent =
             new GUIContent("（選択してください）");
 
         private const string PlayingWarning =
-            "再生中は実行できません。再生を停止してください。";
+            "再生中は実行できません。再生を止めてください。";
         private const string SourceWarning = "素体メッシュを 1 つ以上指定してください。";
         private const string MissingMeshWarning =
             "素体メッシュにメッシュが設定されていないものがあります。";
-        private const string MissingShapeWarning = "素体メッシュにシェイプキーがありません。";
+        private const string MissingShapeWarning = "素体メッシュにブレンドシェイプがありません。";
         private const string CostumeRootWarning = "衣装ルートを指定してください。";
         private const string DuplicateSourceWarning =
-            "Candy Box: 同じ素体メッシュが既に指定されています。";
+            "Poyo's Avatar Toolbox: 同じ素体メッシュが既に指定されています。";
         private const string NoVisibleGroupMessage =
-            "表示できる対応がありません。絞り込みを見直すか、素体のシェイプキーを追加してください。";
-        private const string SourceDropdownTitle = "素体のシェイプキー";
-        private const string CostumeDropdownTitle = "衣装側のシェイプキー";
+            "表示できる対応がありません。絞り込みを見直すか、素体のブレンドシェイプを追加してください。";
+        private const string SourceDropdownTitle = "素体のブレンドシェイプ";
+        private const string CostumeDropdownTitle = "衣装側のブレンドシェイプ";
         private const string ConfirmFormat =
             "{0} 件の対応を設定し、{1} 件を削除します。よろしいですか？";
         private const string ResultFormat =
@@ -528,7 +528,7 @@ namespace Poyo.CandyBox.MaBlendshapeSyncHelper.Editor
             if (!_plan.CostumeRenderersByShapeName.TryGetValue(
                     shapeName, out List<int> rendererIndices))
             {
-                Debug.LogWarning("Candy Box: 追加できる対応がありませんでした。");
+                Debug.LogWarning("Poyo's Avatar Toolbox: 追加できる対応がありませんでした。");
                 return;
             }
 
@@ -557,11 +557,11 @@ namespace Poyo.CandyBox.MaBlendshapeSyncHelper.Editor
 
             if (addedCount > 0)
             {
-                Debug.Log("Candy Box: " + addedCount + " 件の対応を追加しました。");
+                Debug.Log("Poyo's Avatar Toolbox: " + addedCount + " 件の対応を追加しました。");
             }
             else
             {
-                Debug.LogWarning("Candy Box: 追加できる対応がありませんでした。");
+                Debug.LogWarning("Poyo's Avatar Toolbox: 追加できる対応がありませんでした。");
             }
         }
 
@@ -570,7 +570,7 @@ namespace Poyo.CandyBox.MaBlendshapeSyncHelper.Editor
             string confirmation = string.Format(
                 ConfirmFormat, _plan.EnabledCount, _plan.RemovalCount);
             if (!EditorUtility.DisplayDialog(
-                    "Candy Box", confirmation, "適用", "キャンセル"))
+                    "Poyo's Avatar Toolbox", confirmation, "適用", "キャンセル"))
             {
                 return;
             }

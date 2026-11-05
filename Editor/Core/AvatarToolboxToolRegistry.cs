@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Poyo.CandyBox.Editor
+namespace Poyo.AvatarToolbox.Editor
 {
     /// <summary>有効なツールが自分の開き方を登録する窓口。</summary>
     // NOTE: Core からツールのアセンブリを参照すると、そのツールを無効にした時点で
     //       Core がコンパイルできなくなる。依存を逆向きにするためのレジストリ。
-    public static class CandyBoxToolRegistry
+    public static class AvatarToolboxToolRegistry
     {
         private static readonly Dictionary<string, Action> Openers =
             new Dictionary<string, Action>();
@@ -16,13 +16,13 @@ namespace Poyo.CandyBox.Editor
         {
             if (string.IsNullOrEmpty(toolId))
             {
-                Debug.LogError("Candy Box: ツール ID が指定されていないため登録できません。");
+                Debug.LogError("Poyo's Avatar Toolbox: ツール ID が指定されていないため登録できません。");
                 return;
             }
 
             if (opener == null)
             {
-                Debug.LogError("Candy Box: ツールの起動処理が指定されていないため登録できません。");
+                Debug.LogError("Poyo's Avatar Toolbox: ツールの起動処理が指定されていないため登録できません。");
                 return;
             }
 

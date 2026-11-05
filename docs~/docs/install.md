@@ -4,51 +4,34 @@
 
 | 項目 | 要件 |
 |---|---|
-| Unity | 2022.3 (LTS) |
-| VRChat SDK | 不要（入っていても問題ありません） |
-| 対応 | エディタ専用。実行時のアセンブリを持ちません |
+| Unity | 2022.3 |
+| VRChat SDK | 不要です |
 
-!!! note "パッケージ自体には必須の依存パッケージがありません"
-    一部のツールだけが外部パッケージと連携します。未導入でもパッケージ全体は問題なく動き、
-    そのツールだけが有効化できない状態になります。
+パッケージ全体として必要なパッケージはありません。次のツールだけ、ほかのパッケージが入っていないと有効にできません。
 
 | ツール | 必要なパッケージ |
 |---|---|
 | 01_Helper for MA Blendshape Sync | Modular Avatar 1.17.0 以降 |
 | 02_Helper for AAO Merge PhysBone | AAO: Avatar Optimizer 1.9.0 以降 |
 | 03_Helper for AAO Merge Bone | AAO: Avatar Optimizer 1.9.0 以降 |
+| 07_Parts Set Adjuster | VRChat SDK - Base 3.5.0 以降 |
+| 08_FaceEmo Splitter | FaceEmo 1.7.0 以降（2.x は未対応） |
 
-04_Hair Tone Matcher に必要なパッケージはありません。
-ただし、色を合わせる先（新しい髪）のマテリアルが **lilToon** または **Poiyomi** である必要があります。
+04_Hair Tone Matcher は、色を合わせる先の髪のマテリアルが lilToon か Poiyomi のときに使えます。
 
-## VCC / ALCOM から導入する（推奨）
+## VCC / ALCOM から入れる
 
-1. VCC または ALCOM に、配布元のリポジトリを追加します。
-2. 対象の Unity プロジェクトを開き、**Manage Packages** を選びます。
-3. 一覧から「Candy Box」を追加します。
+1. VCC または ALCOM に `https://vpm.maaaaa.net/index.json` を追加します。
+2. プロジェクトの Manage Packages を開き、「Poyo's Avatar Toolbox」を追加します。
 
-## unitypackage から導入する
+## .unitypackage から入れる
 
-VCC を使っていない場合は、[リリースページ](https://github.com/Poyotoron/Candy-Box/releases)から
-`.unitypackage` をダウンロードし、Unity のプロジェクトへドラッグ＆ドロップしてインポートしてください。
+[リリースページ](https://github.com/Poyotoron/Avatar-Toolbox/releases)から `.unitypackage` をダウンロードし、Unity にドラッグ＆ドロップしてインポートします。
 
-## 導入できたか確認する
+## 開き方
 
-Unity のメニューに次の項目が増えていればインストール成功です。
-
-```
-Tools > Candy Box
-```
-
-クリックすると設定ウィンドウが開きます。
-
-!!! warning "導入直後は、すべてのツールが無効です"
-    ツールのウィンドウを開くには、まず[設定ウィンドウ](settings.md)で有効にする必要があります。
-    メニューに増えるのは `Tools > Candy Box` の 1 項目だけで、ツールごとのメニュー項目はありません。
+メニューの `Tools > Poyo's Avatar Toolbox` で設定ウィンドウが開きます。メニューはこの 1 つだけで、各ツールは設定ウィンドウから開きます。入れた直後はどのツールも無効なので、[設定ウィンドウ](settings.md)で有効にしてください。
 
 ## 更新する
 
-VCC / ALCOM から更新するか、新しい `.unitypackage` をインポートしてください。
-
-有効にしているツールの状態は Unity のプロジェクト設定に保存されているため、
-更新しても選択は保たれます。
+VCC / ALCOM で更新するか、新しい `.unitypackage` をインポートします。有効にしたツールは、更新しても有効のままです。

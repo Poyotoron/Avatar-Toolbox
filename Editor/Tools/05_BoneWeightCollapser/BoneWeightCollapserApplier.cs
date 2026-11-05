@@ -4,7 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.BoneWeightCollapser.Editor
+namespace Poyo.AvatarToolbox.BoneWeightCollapser.Editor
 {
     internal static class BoneWeightCollapserApplier
     {
@@ -139,7 +139,7 @@ namespace Poyo.CandyBox.BoneWeightCollapser.Editor
             if (renderer == null || source == null || renderer.sharedMesh != source)
             {
                 throw new InvalidOperationException(
-                    "走査後にメッシュが変更されました。もう一度影響を確認してください。");
+                    "確認したあとにメッシュが変更されました。もう一度影響を確認してください。");
             }
 
             var applicableRules = new List<BoneWeightTargetRule>();

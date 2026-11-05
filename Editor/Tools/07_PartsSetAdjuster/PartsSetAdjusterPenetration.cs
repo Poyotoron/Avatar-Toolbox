@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.PartsSetAdjuster.Editor
+namespace Poyo.AvatarToolbox.PartsSetAdjuster.Editor
 {
     internal sealed class PartsSetReferenceField
     {
@@ -253,7 +253,7 @@ namespace Poyo.CandyBox.PartsSetAdjuster.Editor
                     result.FaceMesh = new Mesh
                     {
                         hideFlags = HideFlags.HideAndDontSave,
-                        name = "CandyBoxPenetrationFaces"
+                        name = "AvatarToolboxPenetrationFaces"
                     };
                     result.FaceMesh.SetVertices(vertices);
                     result.FaceMesh.SetTriangles(indices, 0);

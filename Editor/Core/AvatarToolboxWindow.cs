@@ -2,13 +2,13 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.Editor
+namespace Poyo.AvatarToolbox.Editor
 {
-    internal sealed class CandyBoxWindow : EditorWindow
+    internal sealed class AvatarToolboxWindow : EditorWindow
     {
         private static readonly string[] ToolSymbols = CreateToolSymbols();
         private static readonly GUIContent HeaderContent =
-            new GUIContent(CandyBoxInfo.DisplayName + "  v" + CandyBoxInfo.Version);
+            new GUIContent(AvatarToolboxInfo.DisplayName + "  v" + AvatarToolboxInfo.Version);
         private static readonly GUIContent RecompileNoticeContent = new GUIContent(
             "ツールの切り替えを適用するとスクリプトが再コンパイルされます。");
         private static readonly GUIContent PendingNoticeContent = new GUIContent(
@@ -44,11 +44,11 @@ namespace Poyo.CandyBox.Editor
         private float _dependencyHeaderWidth;
         private string _selectedDependencyWarning = string.Empty;
 
-        [MenuItem(CandyBoxInfo.MenuPath, false, CandyBoxInfo.MenuPriority)]
+        [MenuItem(AvatarToolboxInfo.MenuPath, false, AvatarToolboxInfo.MenuPriority)]
         private static void Open()
         {
-            var window = GetWindow<CandyBoxWindow>(
-                false, CandyBoxInfo.DisplayName, true);
+            var window = GetWindow<AvatarToolboxWindow>(
+                false, AvatarToolboxInfo.DisplayName, true);
             window.minSize = new Vector2(520f, 600f);
             window.Show();
         }
@@ -57,10 +57,10 @@ namespace Poyo.CandyBox.Editor
         {
             _wasCompiling = EditorApplication.isCompiling;
             RefreshActual();
-            if (CandyBoxToolCatalog.Find(_selectedToolId) == null &&
-                CandyBoxToolCatalog.Tools.Length > 0)
+            if (AvatarToolboxToolCatalog.Find(_selectedToolId) == null &&
+                AvatarToolboxToolCatalog.Tools.Length > 0)
             {
-                _selectedToolId = CandyBoxToolCatalog.Tools[0].Id;
+                _selectedToolId = AvatarToolboxToolCatalog.Tools[0].Id;
             }
 
             RefreshSelectedToolDetails();
@@ -99,7 +99,7 @@ namespace Poyo.CandyBox.Editor
             if (selectedIndex >= 0)
             {
                 EditorGUILayout.LabelField(
-                    CandyBoxToolCatalog.Tools[selectedIndex].DisplayName,
+                    AvatarToolboxToolCatalog.Tools[selectedIndex].DisplayName,
                     EditorStyles.boldLabel);
             }
             else
@@ -119,9 +119,9 @@ namespace Poyo.CandyBox.Editor
         {
             Event currentEvent = Event.current;
 
-            for (int i = 0; i < CandyBoxToolCatalog.Tools.Length; i++)
+            for (int i = 0; i < AvatarToolboxToolCatalog.Tools.Length; i++)
             {
-                CandyBoxToolEntry tool = CandyBoxToolCatalog.Tools[i];
+                AvatarToolboxToolEntry tool = AvatarToolboxToolCatalog.Tools[i];
                 bool isSelected = string.Equals(
                     _selectedToolId, tool.Id, StringComparison.Ordinal);
                 Color previousBackground = GUI.backgroundColor;
@@ -190,9 +190,9 @@ namespace Poyo.CandyBox.Editor
             bool canOpen = false;
             if (selectedIndex >= 0)
             {
-                CandyBoxToolEntry selectedTool = CandyBoxToolCatalog.Tools[selectedIndex];
+                AvatarToolboxToolEntry selectedTool = AvatarToolboxToolCatalog.Tools[selectedIndex];
                 bool isEnabled = _actualEnabled[selectedIndex];
-                bool isRegistered = CandyBoxToolRegistry.TryGetOpener(
+                bool isRegistered = AvatarToolboxToolRegistry.TryGetOpener(
                     selectedTool.Id, out opener);
 
                 if (!selectedTool.IsAvailable)
@@ -261,7 +261,7 @@ namespace Poyo.CandyBox.Editor
                 return;
             }
 
-            CandyBoxToolEntry selectedTool = CandyBoxToolCatalog.Tools[selectedIndex];
+            AvatarToolboxToolEntry selectedTool = AvatarToolboxToolCatalog.Tools[selectedIndex];
             EditorGUILayout.LabelField(
                 selectedTool.Description, EditorStyles.wordWrappedLabel);
             if (_dependencyHeaderWidth <= 0f)
@@ -288,7 +288,7 @@ namespace Poyo.CandyBox.Editor
 
         private void RefreshActual()
         {
-            int toolCount = CandyBoxToolCatalog.Tools.Length;
+            int toolCount = AvatarToolboxToolCatalog.Tools.Length;
             if (_actualEnabled == null || _actualEnabled.Length != toolCount)
             {
                 _actualEnabled = new bool[toolCount];
@@ -301,7 +301,7 @@ namespace Poyo.CandyBox.Editor
                 _pendingEnabled = new bool[toolCount];
             }
 
-            CandyBoxDefines.GetDefined(ToolSymbols, _actualEnabled);
+            AvatarToolboxDefines.GetDefined(ToolSymbols, _actualEnabled);
             if (initializePending)
             {
                 Array.Copy(_actualEnabled, _pendingEnabled, toolCount);
@@ -310,7 +310,7 @@ namespace Poyo.CandyBox.Editor
             // NOTE: 要件を満たさない行は操作できないため、解消不能な保留差分を残さない。
             for (int toolIndex = 0; toolIndex < toolCount; toolIndex++)
             {
-                if (!CandyBoxToolCatalog.Tools[toolIndex].IsAvailable)
+                if (!AvatarToolboxToolCatalog.Tools[toolIndex].IsAvailable)
                 {
                     _pendingEnabled[toolIndex] = _actualEnabled[toolIndex];
                 }
@@ -319,8 +319,8 @@ namespace Poyo.CandyBox.Editor
 
         private void RefreshSelectedToolDetails()
         {
-            CandyBoxToolEntry selectedTool =
-                CandyBoxToolCatalog.Find(_selectedToolId);
+            AvatarToolboxToolEntry selectedTool =
+                AvatarToolboxToolCatalog.Find(_selectedToolId);
             _selectedDependencyWarning =
                 selectedTool != null &&
                 !selectedTool.IsAvailable &&
@@ -379,14 +379,14 @@ namespace Poyo.CandyBox.Editor
             // NOTE: シンボルの書き換えによる再コンパイルで GUI のレイアウト処理を
             //       中断しないよう、描画が完了してから変更する。
             EditorApplication.delayCall += () =>
-                CandyBoxDefines.SetDefined(symbols, enabled);
+                AvatarToolboxDefines.SetDefined(symbols, enabled);
         }
 
         private static int FindToolIndex(string toolId)
         {
-            for (int i = 0; i < CandyBoxToolCatalog.Tools.Length; i++)
+            for (int i = 0; i < AvatarToolboxToolCatalog.Tools.Length; i++)
             {
-                if (CandyBoxToolCatalog.Tools[i].Id == toolId)
+                if (AvatarToolboxToolCatalog.Tools[i].Id == toolId)
                 {
                     return i;
                 }
@@ -397,10 +397,10 @@ namespace Poyo.CandyBox.Editor
 
         private static string[] CreateToolSymbols()
         {
-            var symbols = new string[CandyBoxToolCatalog.Tools.Length];
+            var symbols = new string[AvatarToolboxToolCatalog.Tools.Length];
             for (int i = 0; i < symbols.Length; i++)
             {
-                symbols[i] = CandyBoxToolCatalog.Tools[i].DefineSymbol;
+                symbols[i] = AvatarToolboxToolCatalog.Tools[i].DefineSymbol;
             }
 
             return symbols;

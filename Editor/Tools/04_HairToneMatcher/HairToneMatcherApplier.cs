@@ -4,7 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.HairToneMatcher.Editor
+namespace Poyo.AvatarToolbox.HairToneMatcher.Editor
 {
     internal enum HairToneOutputMode
     {

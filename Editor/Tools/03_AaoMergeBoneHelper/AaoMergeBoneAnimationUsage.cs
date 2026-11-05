@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.AaoMergeBoneHelper.Editor
+namespace Poyo.AvatarToolbox.AaoMergeBoneHelper.Editor
 {
     internal static class AaoMergeBoneAnimationUsage
     {
@@ -57,7 +57,7 @@ namespace Poyo.CandyBox.AaoMergeBoneHelper.Editor
                 }
                 catch (Exception exception)
                 {
-                    Debug.LogWarning("Candy Box: " + component.GetType().Name + " のアニメーション参照を読めませんでした。\n" + exception);
+                    Debug.LogWarning("Poyo's Avatar Toolbox: " + component.GetType().Name + " のアニメーション参照を読めませんでした。\n" + exception);
                 }
             }
 

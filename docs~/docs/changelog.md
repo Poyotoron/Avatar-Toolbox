@@ -1,9 +1,7 @@
 # 更新履歴
 
-このドキュメントは**最新バージョン**の内容を説明しています。フッタに、対応するバージョン番号を表示しています。
+このドキュメントは最新のバージョンに合わせて書いています。対応するバージョンはページの下に表示しています。
 
-バージョンごとの変更点は、リポジトリの更新履歴を参照してください。
+バージョンごとの変更点は、リポジトリの更新履歴を見てください。
 
-[GitHub で更新履歴を見る](https://github.com/Poyotoron/Candy-Box/blob/main/CHANGELOG.md){ .md-button }
-
-設定ウィンドウのヘッダにも、いま入っているバージョンが表示されます。
+[GitHub で更新履歴を見る](https://github.com/Poyotoron/Avatar-Toolbox/blob/main/CHANGELOG.md){ .md-button }

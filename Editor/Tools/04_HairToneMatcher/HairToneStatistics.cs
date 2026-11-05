@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Poyo.CandyBox.HairToneMatcher.Editor
+namespace Poyo.AvatarToolbox.HairToneMatcher.Editor
 {
     internal struct HairToneStats
     {

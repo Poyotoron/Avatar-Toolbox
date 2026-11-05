@@ -1,7 +1,7 @@
-using Poyo.CandyBox.Editor;
+using Poyo.AvatarToolbox.Editor;
 using UnityEditor;
 
-namespace Poyo.CandyBox.BlendShapeBackuper.Editor
+namespace Poyo.AvatarToolbox.BlendShapeBackuper.Editor
 {
     internal static class BlendShapeBackuperEntry
     {
@@ -10,7 +10,7 @@ namespace Poyo.CandyBox.BlendShapeBackuper.Editor
         [InitializeOnLoadMethod]
         private static void Register()
         {
-            CandyBoxToolRegistry.Register(ToolId, BlendShapeBackuperWindow.Open);
+            AvatarToolboxToolRegistry.Register(ToolId, BlendShapeBackuperWindow.Open);
         }
     }
 }

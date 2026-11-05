@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Poyo.CandyBox.HairToneMatcher.Editor
+namespace Poyo.AvatarToolbox.HairToneMatcher.Editor
 {
     internal sealed class HairToneMatcherWindow : EditorWindow
     {
@@ -26,7 +26,7 @@ namespace Poyo.CandyBox.HairToneMatcher.Editor
 
         private static readonly GUIContent TitleContent = new GUIContent("04_Hair Tone Matcher");
         private static readonly GUIContent UserMaskContent = new GUIContent("追加の除外マスク");
-        private static readonly GUIContent AlphaContent = new GUIContent("アルファ閾値");
+        private static readonly GUIContent AlphaContent = new GUIContent("アルファのしきい値");
         private static readonly GUIContent UvContent = new GUIContent("サブメッシュの UV で絞り込む");
         private static readonly GUIContent MeasureContent = new GUIContent();
         private static readonly GUIContent[] SamplingContents =
@@ -45,7 +45,7 @@ namespace Poyo.CandyBox.HairToneMatcher.Editor
         private static readonly string[] OutputModeHelpMessages =
         {
             "マテリアルとメインテクスチャをどちらも複製し、補正をテクスチャの画素へ焼き込みます。元のマテリアルとテクスチャは変更しません。シェーダーがフォールバックしても色が保たれます。焼き込んだあとは、切り替えの欄から値を編集して焼き直せます。",
-            "マテリアルを複製し、補正を設定として書き込みます。あとから値を調整できますが、シェーダーがフォールバックすると補正が反映されなくなります。",
+            "マテリアルを複製し、補正を設定として書き込みます。あとから値を調整できますが、シェーダーがフォールバックすると補正が効かなくなります。",
             "改変先のマテリアルそのものに補正を書き込みます。このマテリアルを参照している他のオブジェクトにも影響します。",
         };
         private static readonly HairToneOutputMode[] OutputModeOrder =
@@ -55,9 +55,9 @@ namespace Poyo.CandyBox.HairToneMatcher.Editor
             HairToneOutputMode.Overwrite,
         };
         private static readonly GUIContent AppliedSectionContent =
-            new GUIContent("反映の切り替え");
+            new GUIContent("補正の切り替え");
         private static readonly GUIContent ToneAppliedContent =
-            new GUIContent("色調補正を反映");
+            new GUIContent("色調補正を使う");
         private static readonly GUIContent NoCopiedPropertiesContent =
             new GUIContent("コピーした設定はありません。");
         private static readonly GUIContent BakedToggleHelpContent = new GUIContent(
@@ -88,7 +88,7 @@ namespace Poyo.CandyBox.HairToneMatcher.Editor
         private static readonly GUIContent PropertyDiffHelpContent = new GUIContent(
             "チェックを入れた設定を、改変元の値でコピーします。");
         private static readonly GUIContent GroupApplyContent = new GUIContent(
-            string.Empty, "グループ内をまとめて反映 / 解除します。");
+            string.Empty, "グループ内の設定をまとめて適用 / 解除します。");
         private static readonly GUIContent EditedMarkerContent = new GUIContent("*");
         private static readonly GUIContent AppliedHueContent = new GUIContent("色相");
         private static readonly GUIContent AppliedSaturationContent = new GUIContent("彩度");
@@ -103,14 +103,14 @@ namespace Poyo.CandyBox.HairToneMatcher.Editor
         private const string IntroMessage =
             "元の髪と新しい髪の色を比べ、新しい髪へ書き込む補正値を提案します。";
         private const string OutsideMaskMessage =
-            "この位置には補正が効きません。適用範囲の内側を選んでください。";
+            "この位置には補正がかかりません。適用範囲の内側を選んでください。";
         private const string PickerFailureMessage =
             "透明な領域のため、色を拾えませんでした。";
         private const string AppliedLifetimeMessage =
-            "反映の切り替えは、このウィンドウを閉じるかスクリプトが再コンパイルされるまで有効です。";
+            "補正の切り替えは、このウィンドウを閉じるかスクリプトが再コンパイルされるまで有効です。";
         private const string UndoName = "Hair Tone Matcher";
         private const string PropertyCopyHelp =
-            "反映されない場合は、そのシェーダーのインスペクターで該当の機能を一度有効にしてください。";
+            "補正が効かない場合は、そのシェーダーの Inspector で該当する機能を一度有効にしてください。";
 
         [SerializeField] private List<HairToneSourceInput> _sourceInputs =
             new List<HairToneSourceInput>();
@@ -503,7 +503,7 @@ namespace Poyo.CandyBox.HairToneMatcher.Editor
 
                 if (target.IsAdjustmentEdited)
                     EditorGUILayout.LabelField("編集済み", EditorStyles.miniBoldLabel);
-                if (GUILayout.Button("算出値に戻す")) RestoreSuggestedAdjustment(target);
+                if (GUILayout.Button("提案した値に戻す")) RestoreSuggestedAdjustment(target);
                 if (_sampling == HairToneSampling.Statistics && target.GammaLimited)
                     EditorGUILayout.HelpBox(GammaLimitedMessage, MessageType.Info);
                 EditorGUILayout.HelpBox(
@@ -1056,7 +1056,7 @@ namespace Poyo.CandyBox.HairToneMatcher.Editor
             catch (Exception exception)
             {
                 _resultSummary = string.Format(
-                    "{0}: 焼き直し失敗 — {1}", state.Header, exception.Message);
+                    "{0}: 焼き直しに失敗しました（{1}）", state.Header, exception.Message);
                 Debug.LogException(exception);
             }
 
@@ -1667,7 +1667,7 @@ namespace Poyo.CandyBox.HairToneMatcher.Editor
 
         private string GetScanBlockedReason()
         {
-            if (EditorApplication.isPlaying) return "Play Mode 中は実行できません。";
+            if (EditorApplication.isPlaying) return "再生中は実行できません。再生を止めてください。";
             bool hasSource = false;
             for (int i = 0; i < _sourceInputs.Count; i++)
                 hasSource |= _sourceInputs[i] != null && _sourceInputs[i].Material != null;
@@ -2447,7 +2447,7 @@ namespace Poyo.CandyBox.HairToneMatcher.Editor
                 if (!result.Succeeded)
                 {
                     failed++;
-                    lines.Add(result.TargetLabel + ": 失敗 — " + result.Error);
+                    lines.Add(result.TargetLabel + ": 失敗しました（" + result.Error + "）");
                     continue;
                 }
 
@@ -2472,7 +2472,7 @@ namespace Poyo.CandyBox.HairToneMatcher.Editor
             }
 
             lines.Add(string.Format("成功 {0} 件 / 失敗 {1} 件", succeeded, failed));
-            lines.Add("Ctrl+Z ではマテリアルと Renderer の変更をまとめて戻せます。生成したファイルは残ります。");
+            lines.Add("Undo（Ctrl+Z）でマテリアルと Renderer の変更をまとめて取り消せます。生成したファイルは残ります。");
             return string.Join("\n", lines);
         }
     }

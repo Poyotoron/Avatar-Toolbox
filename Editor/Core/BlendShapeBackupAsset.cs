@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Poyo.CandyBox.Editor
+namespace Poyo.AvatarToolbox.Editor
 {
     /// <summary>ブレンドシェイプ 1 件分のキー名と値。</summary>
     [System.Serializable]

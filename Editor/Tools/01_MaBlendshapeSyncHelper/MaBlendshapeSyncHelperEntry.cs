@@ -1,7 +1,7 @@
-using Poyo.CandyBox.Editor;
+using Poyo.AvatarToolbox.Editor;
 using UnityEditor;
 
-namespace Poyo.CandyBox.MaBlendshapeSyncHelper.Editor
+namespace Poyo.AvatarToolbox.MaBlendshapeSyncHelper.Editor
 {
     /// <summary>このツールの入口を共通基盤へ登録する。</summary>
     // NOTE: 共通基盤から任意ツールを参照せず、無効時も共通基盤を成立させる。
@@ -12,7 +12,7 @@ namespace Poyo.CandyBox.MaBlendshapeSyncHelper.Editor
         [InitializeOnLoadMethod]
         private static void Register()
         {
-            CandyBoxToolRegistry.Register(ToolId, MaBlendshapeSyncHelperWindow.Open);
+            AvatarToolboxToolRegistry.Register(ToolId, MaBlendshapeSyncHelperWindow.Open);
         }
     }
 }

@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.FaceEmoSplitter.Editor
+namespace Poyo.AvatarToolbox.FaceEmoSplitter.Editor
 {
     internal sealed class FaceEmoSplitterMenuSnapshot
     {
@@ -99,7 +99,7 @@ namespace Poyo.CandyBox.FaceEmoSplitter.Editor
             if (!_warned)
             {
                 _warned = true;
-                Debug.LogWarning("Candy Box: MA Menu Installer の設定を読み書きできませんでした。Modular Avatar の版を確認してください。");
+                Debug.LogWarning("Poyo's Avatar Toolbox: MA Menu Installer の設定を読み書きできませんでした。Modular Avatar のバージョンを確認してください。");
             }
         }
     }

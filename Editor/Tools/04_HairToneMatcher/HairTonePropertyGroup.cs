@@ -1,6 +1,6 @@
 using System;
 
-namespace Poyo.CandyBox.HairToneMatcher.Editor
+namespace Poyo.AvatarToolbox.HairToneMatcher.Editor
 {
     internal sealed class HairTonePropertyGroup
     {

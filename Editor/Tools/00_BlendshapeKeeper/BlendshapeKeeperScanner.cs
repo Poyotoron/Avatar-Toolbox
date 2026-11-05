@@ -4,7 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.BlendshapeKeeper.Editor
+namespace Poyo.AvatarToolbox.BlendshapeKeeper.Editor
 {
     internal static class BlendshapeKeeperScanner
     {
@@ -53,7 +53,7 @@ namespace Poyo.CandyBox.BlendshapeKeeper.Editor
                         plan,
                         skipKeys,
                         GetClipTarget(clip),
-                        "走査中に予期しないエラーが発生しました: " + exception.Message);
+                        "調べている間にエラーが起きました: " + exception.Message);
                 }
             }
 

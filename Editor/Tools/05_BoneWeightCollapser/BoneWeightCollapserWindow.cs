@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.BoneWeightCollapser.Editor
+namespace Poyo.AvatarToolbox.BoneWeightCollapser.Editor
 {
     internal sealed class BoneWeightCollapserWindow : EditorWindow
     {
@@ -37,12 +37,12 @@ namespace Poyo.CandyBox.BoneWeightCollapser.Editor
         private static readonly GUIContent OutputFolderContent = new GUIContent("出力フォルダ");
         private static readonly GUIContent OutputPathContent = new GUIContent("パス");
         private static readonly GUIContent SelectFolderContent = new GUIContent("選択");
-        private static readonly GUIContent SuffixContent = new GUIContent("サフィックス");
+        private static readonly GUIContent SuffixContent = new GUIContent("名前の末尾");
         private static readonly GUIContent ScanContent = new GUIContent("影響を確認");
         private static readonly GUIContent ApplyContent = new GUIContent("適用");
         private static readonly GUIContent RevertContent = new GUIContent("元に戻す");
         private static readonly GUIContent BreakdownContent = new GUIContent("移動元の内訳");
-        private static readonly GUIContent ScanSummaryContent = new GUIContent("走査結果");
+        private static readonly GUIContent ScanSummaryContent = new GUIContent("調べた結果");
         private static readonly GUIContent AffectedVerticesContent = new GUIContent("影響頂点数");
         private static readonly GUIContent MovedWeightContent = new GUIContent("移動ウェイト");
         private static readonly GUIContent ResultHeaderContent = new GUIContent("結果");
@@ -55,7 +55,7 @@ namespace Poyo.CandyBox.BoneWeightCollapser.Editor
         private const string ChangedInputMessage =
             "入力が変わりました。もう一度『影響を確認』を押してください。";
         private const string MissingRootMessage = "対象オブジェクトを指定してください。";
-        private const string PlayingMessage = "再生中は実行できません。再生を停止してください。";
+        private const string PlayingMessage = "再生中は実行できません。再生を止めてください。";
         private const string MissingScanMessage = "先に『影響を確認』を実行してください。";
         private const string MissingValidRuleMessage =
             "移動元ボーンと移動先ボーンを指定したルールが 1 つもありません。";
@@ -65,7 +65,7 @@ namespace Poyo.CandyBox.BoneWeightCollapser.Editor
         private const string MissingOutputFolderMessage = "出力フォルダを指定してください。";
         private const string InvalidOutputFolderMessage =
             "出力フォルダが見つかりません。Project 内のフォルダを指定してください。";
-        private const string MissingSuffixMessage = "サフィックスを入力してください。";
+        private const string MissingSuffixMessage = "名前の末尾を入力してください。";
         private const string NotAFolderMessage = "フォルダを指定してください。";
         private const string OutsideProjectMessage =
             "Project の Assets 内にあるフォルダを指定してください。";

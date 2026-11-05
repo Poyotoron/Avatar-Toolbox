@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.PartsSetAdjuster.Editor
+namespace Poyo.AvatarToolbox.PartsSetAdjuster.Editor
 {
     internal static class PartsSetAdjusterTarget
     {
-        private const string PlayingReason = "再生中は使えません。再生を停止してください。";
+        private const string PlayingReason = "再生中は使用できません。再生を止めてください。";
         private const string ReferenceMeshReason = "基準のメッシュを指定してください。";
         private const string HumanReason = "基準のメッシュが人型のアバターの中にありません。";
         private const string PartReason = "パーツを指定してください。";

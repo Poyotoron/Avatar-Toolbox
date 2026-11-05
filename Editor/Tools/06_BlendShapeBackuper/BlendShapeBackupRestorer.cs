@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.BlendShapeBackuper.Editor
+namespace Poyo.AvatarToolbox.BlendShapeBackuper.Editor
 {
     internal sealed class BlendShapeBackupPreview
     {
@@ -94,7 +94,7 @@ namespace Poyo.CandyBox.BlendShapeBackuper.Editor
     internal static class BlendShapeBackupRestorer
     {
         private const string RestoreUndoName = "Restore BlendShape Values";
-        private const string PlayingLabel = "再生中は復元できません。";
+        private const string PlayingLabel = "再生中は復元できません。再生を止めてください。";
         private const string NothingSelectedLabel =
             "復元するキーが選択されていません。";
 

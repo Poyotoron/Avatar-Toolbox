@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.PartsSetAdjuster.Editor
+namespace Poyo.AvatarToolbox.PartsSetAdjuster.Editor
 {
     internal static class PartsSetAdjusterPose
     {

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Poyo.CandyBox.Editor;
+using Poyo.AvatarToolbox.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace Poyo.CandyBox.BlendShapeBackuper.Editor
+namespace Poyo.AvatarToolbox.BlendShapeBackuper.Editor
 {
     internal enum BlendShapeTargetBlockReason
     {

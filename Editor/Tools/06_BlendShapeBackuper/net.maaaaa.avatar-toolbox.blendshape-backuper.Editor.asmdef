@@ -1,8 +1,8 @@
 {
-    "name": "net.maaaaa.candy-box.blendshape-backuper.Editor",
-    "rootNamespace": "Poyo.CandyBox.BlendShapeBackuper.Editor",
+    "name": "net.maaaaa.avatar-toolbox.blendshape-backuper.Editor",
+    "rootNamespace": "Poyo.AvatarToolbox.BlendShapeBackuper.Editor",
     "references": [
-        "net.maaaaa.candy-box.Editor"
+        "net.maaaaa.avatar-toolbox.Editor"
     ],
     "includePlatforms": [
         "Editor"
@@ -13,7 +13,7 @@
     "precompiledReferences": [],
     "autoReferenced": false,
     "defineConstraints": [
-        "CANDY_BOX_TOOL_06"
+        "AVATAR_TOOLBOX_TOOL_06"
     ],
     "versionDefines": [],
     "noEngineReferences": false
