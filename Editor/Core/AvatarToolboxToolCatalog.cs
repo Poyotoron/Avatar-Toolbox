@@ -8,10 +8,14 @@ namespace Poyo.AvatarToolbox.Editor
         internal readonly string Description;
         internal readonly string RequirementLabel;
         internal readonly bool IsAvailable;
+        internal readonly bool IsDeprecated;
+        internal readonly string ReplacementLabel;
 
         private readonly string _defineSymbol;
 
-        internal AvatarToolboxToolEntry(string id, string displayName, string summary, string description)
+        internal AvatarToolboxToolEntry(
+            string id, string displayName, string summary, string description,
+            string replacementLabel = null)
         {
             Id = id;
             DisplayName = displayName;
@@ -19,6 +23,8 @@ namespace Poyo.AvatarToolbox.Editor
             Description = description;
             RequirementLabel = null;
             IsAvailable = true;
+            IsDeprecated = replacementLabel != null;
+            ReplacementLabel = replacementLabel;
             _defineSymbol = AvatarToolboxInfo.DefineSymbolPrefix + id;
         }
 
@@ -28,7 +34,8 @@ namespace Poyo.AvatarToolbox.Editor
             string summary,
             string description,
             string requirementLabel,
-            bool isAvailable)
+            bool isAvailable,
+            string replacementLabel = null)
         {
             Id = id;
             DisplayName = displayName;
@@ -36,6 +43,8 @@ namespace Poyo.AvatarToolbox.Editor
             Description = description;
             RequirementLabel = requirementLabel;
             IsAvailable = isAvailable;
+            IsDeprecated = replacementLabel != null;
+            ReplacementLabel = replacementLabel;
             _defineSymbol = AvatarToolboxInfo.DefineSymbolPrefix + id;
         }
 
@@ -129,7 +138,8 @@ lilToon と Poiyomi のマテリアルに対応します。導入は必須では
                 "00",
                 "00_Blendshape Keeper",
                 "表情アニメで改変したブレンドシェイプが戻るのを防ぎます",
-                BlendshapeKeeperDescription),
+                BlendshapeKeeperDescription,
+                replacementLabel: "C01_Face Keeper（PAT Face Keeper）"),
             new AvatarToolboxToolEntry(
                 "01",
                 "01_Helper for MA Blendshape Sync",
@@ -160,7 +170,8 @@ lilToon と Poiyomi のマテリアルに対応します。導入は必須では
                 "05",
                 "05_Bone Weight Collapser",
                 "不要なボーンのウェイトを、別のボーンへ移します",
-                BoneWeightCollapserDescription),
+                BoneWeightCollapserDescription,
+                replacementLabel: "C02_Bone Weight Transfer（PAT Bone Weight Transfer）"),
             new AvatarToolboxToolEntry(
                 "06",
                 "06_BlendShape Backuper",
