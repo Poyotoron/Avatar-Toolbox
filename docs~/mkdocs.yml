@@ -63,5 +63,9 @@ nav:
   - 06_BlendShape Backuper: blendshape-backuper.md
   - 07_Parts Set Adjuster: parts-set-adjuster.md
   - 08_FaceEmo Splitter: face-emo-splitter.md
+  - コンポーネント:
+      - C00_Animation Helper: animation-helper.md
+      - C01_Face Keeper: face-keeper.md
+      - C02_Bone Weight Transfer: bone-weight-transfer.md
   - 困ったときは: troubleshooting.md
   - 更新履歴: changelog.md
