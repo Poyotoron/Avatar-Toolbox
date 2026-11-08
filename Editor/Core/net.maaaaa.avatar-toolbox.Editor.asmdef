@@ -32,6 +32,11 @@
             "name": "jp.suzuryg.face-emo",
             "expression": "[1.7.0,2.0.0)",
             "define": "AVATAR_TOOLBOX_HAS_FACEEMO"
+        },
+        {
+            "name": "nadena.dev.ndmf",
+            "expression": "[1.14.0,2.0.0)",
+            "define": "AVATAR_TOOLBOX_HAS_NDMF"
         }
     ],
     "noEngineReferences": false

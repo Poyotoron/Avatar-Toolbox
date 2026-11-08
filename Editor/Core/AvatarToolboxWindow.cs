@@ -7,6 +7,10 @@ namespace Poyo.AvatarToolbox.Editor
     internal sealed class AvatarToolboxWindow : EditorWindow
     {
         private static readonly string[] ToolSymbols = CreateToolSymbols();
+        private static readonly GUIContent[] ToolNameContents = CreateToolNameContents();
+        private static readonly GUIContent ComponentsContent = new GUIContent("コンポーネント");
+        private static readonly GUIContent AddComponentContent =
+            new GUIContent("Add Component から追加します");
         private static readonly GUIContent HeaderContent =
             new GUIContent(AvatarToolboxInfo.DisplayName + "  v" + AvatarToolboxInfo.Version);
         private static readonly GUIContent RecompileNoticeContent = new GUIContent(
@@ -43,6 +47,9 @@ namespace Poyo.AvatarToolbox.Editor
         private bool _wasCompiling;
         private float _dependencyHeaderWidth;
         private string _selectedDependencyWarning = string.Empty;
+        private string _deprecatedWarning = string.Empty;
+        private string _componentInstructions = string.Empty;
+        private readonly float[] _toolNameWidths = new float[AvatarToolboxToolCatalog.Tools.Length];
 
         [MenuItem(AvatarToolboxInfo.MenuPath, false, AvatarToolboxInfo.MenuPriority)]
         private static void Open()
@@ -58,6 +65,7 @@ namespace Poyo.AvatarToolbox.Editor
             _wasCompiling = EditorApplication.isCompiling;
             RefreshActual();
             if (AvatarToolboxToolCatalog.Find(_selectedToolId) == null &&
+                AvatarToolboxComponentCatalog.Find(_selectedToolId) == null &&
                 AvatarToolboxToolCatalog.Tools.Length > 0)
             {
                 _selectedToolId = AvatarToolboxToolCatalog.Tools[0].Id;
@@ -93,6 +101,7 @@ namespace Poyo.AvatarToolbox.Editor
             _listScroll = EditorGUILayout.BeginScrollView(
                 _listScroll, GUILayout.ExpandHeight(true));
             DrawToolList();
+            DrawComponentList();
             EditorGUILayout.EndScrollView();
 
             int selectedIndex = FindToolIndex(_selectedToolId);
@@ -104,7 +113,9 @@ namespace Poyo.AvatarToolbox.Editor
             }
             else
             {
-                EditorGUILayout.LabelField(GUIContent.none, EditorStyles.boldLabel);
+                AvatarToolboxComponentEntry component = AvatarToolboxComponentCatalog.Find(_selectedToolId);
+                EditorGUILayout.LabelField(
+                    component != null ? component.DisplayName : string.Empty, EditorStyles.boldLabel);
             }
 
             _detailScroll = EditorGUILayout.BeginScrollView(
@@ -151,6 +162,19 @@ namespace Poyo.AvatarToolbox.Editor
                     _pendingEnabled[i], GUILayout.Width(18f));
                 EditorGUI.EndDisabledGroup();
                 EditorGUILayout.LabelField(tool.DisplayName, EditorStyles.boldLabel);
+                Rect nameRect = GUILayoutUtility.GetLastRect();
+                if (_toolNameWidths[i] <= 0f)
+                {
+                    _toolNameWidths[i] = EditorStyles.boldLabel.CalcSize(ToolNameContents[i]).x;
+                }
+                // NOTE: IMGUI のリッチテキストには取り消し線がないため、文字幅で線を描く。
+                if (tool.IsDeprecated && currentEvent.type == EventType.Repaint)
+                {
+                    EditorGUI.DrawRect(
+                        new Rect(nameRect.x, nameRect.y + nameRect.height * 0.5f,
+                            Mathf.Min(_toolNameWidths[i], nameRect.width), 1f),
+                        EditorStyles.boldLabel.normal.textColor);
+                }
                 if (!tool.IsAvailable)
                 {
                     EditorGUILayout.LabelField(
@@ -214,6 +238,10 @@ namespace Poyo.AvatarToolbox.Editor
                 }
             }
 
+            if (AvatarToolboxComponentCatalog.Find(_selectedToolId) != null)
+            {
+                openButtonContent = AddComponentContent;
+            }
             EditorGUI.BeginDisabledGroup(!canOpen);
             bool openPressed = GUILayout.Button(
                 openButtonContent, GUILayout.Height(ButtonHeight));
@@ -256,14 +284,32 @@ namespace Poyo.AvatarToolbox.Editor
 
         private void DrawSelectedToolDetail(int selectedIndex)
         {
+            AvatarToolboxComponentEntry component = AvatarToolboxComponentCatalog.Find(_selectedToolId);
+            if (!string.IsNullOrEmpty(_deprecatedWarning))
+            {
+                EditorGUILayout.HelpBox(_deprecatedWarning, MessageType.Warning);
+            }
             if (selectedIndex < 0)
             {
+                if (component != null)
+                {
+                    EditorGUILayout.LabelField(component.Description, EditorStyles.wordWrappedLabel);
+                    DrawRequirement(component.RequirementLabel);
+                    EditorGUILayout.LabelField(_componentInstructions, EditorStyles.wordWrappedLabel);
+                    DrawDependencyWarning();
+                }
                 return;
             }
 
             AvatarToolboxToolEntry selectedTool = AvatarToolboxToolCatalog.Tools[selectedIndex];
             EditorGUILayout.LabelField(
                 selectedTool.Description, EditorStyles.wordWrappedLabel);
+            DrawRequirement(selectedTool.RequirementLabel);
+            DrawDependencyWarning();
+        }
+
+        private void DrawRequirement(string requirement)
+        {
             if (_dependencyHeaderWidth <= 0f)
             {
                 // NOTE: GUI コンテキスト外では計測できないため、最初の描画時だけ求める。
@@ -275,10 +321,14 @@ namespace Poyo.AvatarToolbox.Editor
             EditorGUILayout.LabelField(
                 DependencyHeaderContent, GUILayout.Width(_dependencyHeaderWidth));
             EditorGUILayout.LabelField(
-                string.IsNullOrEmpty(selectedTool.RequirementLabel)
+                string.IsNullOrEmpty(requirement)
                     ? NoDependencyLabel
-                    : selectedTool.RequirementLabel);
+                    : requirement);
             EditorGUILayout.EndHorizontal();
+        }
+
+        private void DrawDependencyWarning()
+        {
             if (!string.IsNullOrEmpty(_selectedDependencyWarning))
             {
                 EditorGUILayout.HelpBox(
@@ -321,6 +371,19 @@ namespace Poyo.AvatarToolbox.Editor
         {
             AvatarToolboxToolEntry selectedTool =
                 AvatarToolboxToolCatalog.Find(_selectedToolId);
+            AvatarToolboxComponentEntry component = AvatarToolboxComponentCatalog.Find(_selectedToolId);
+            _deprecatedWarning = selectedTool != null && selectedTool.IsDeprecated
+                ? string.Format("このツールは非推奨です。代わりに {0} を使ってください。", selectedTool.ReplacementLabel)
+                : string.Empty;
+            _componentInstructions = component != null
+                ? string.Format("コンポーネントは切り替えずに使えます。アバターの GameObject を選び、Add Component の「Poyo's Avatar Toolbox」から {0} を追加します。", component.ComponentName)
+                : string.Empty;
+            if (component != null)
+            {
+                _selectedDependencyWarning = !component.IsAvailable
+                    ? string.Format(NotInstalledFormat, component.RequirementLabel) : string.Empty;
+                return;
+            }
             _selectedDependencyWarning =
                 selectedTool != null &&
                 !selectedTool.IsAvailable &&
@@ -328,6 +391,53 @@ namespace Poyo.AvatarToolbox.Editor
                     ? string.Format(
                         NotInstalledFormat, selectedTool.RequirementLabel)
                     : string.Empty;
+        }
+
+        private void DrawComponentList()
+        {
+            EditorGUILayout.Space(6f);
+            EditorGUILayout.LabelField(ComponentsContent, EditorStyles.boldLabel);
+            foreach (AvatarToolboxComponentEntry entry in AvatarToolboxComponentCatalog.Components)
+            {
+                bool selected = _selectedToolId == entry.Id;
+                Color previous = GUI.backgroundColor;
+                if (selected)
+                {
+                    GUI.backgroundColor = SelectedRowColor;
+                }
+                EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
+                GUI.backgroundColor = previous;
+                EditorGUILayout.LabelField(selected ? SelectionMarkerContent : GUIContent.none,
+                    GUILayout.Width(14f));
+                // NOTE: 型を無効化すると保存済みのシーンや Prefab が Missing Script になる。
+                EditorGUILayout.LabelField(GUIContent.none, GUILayout.Width(18f));
+                EditorGUILayout.LabelField(entry.DisplayName, EditorStyles.boldLabel);
+                if (!entry.IsAvailable)
+                {
+                    EditorGUILayout.LabelField(UnavailableMarkerContent, GUILayout.Width(54f));
+                }
+                EditorGUILayout.LabelField(entry.Summary, EditorStyles.miniLabel);
+                EditorGUILayout.EndHorizontal();
+                Rect row = GUILayoutUtility.GetLastRect();
+                EditorGUIUtility.AddCursorRect(row, MouseCursor.Link);
+                if (Event.current.type == EventType.MouseDown && row.Contains(Event.current.mousePosition))
+                {
+                    _selectedToolId = entry.Id;
+                    RefreshSelectedToolDetails();
+                    Event.current.Use();
+                    Repaint();
+                }
+            }
+        }
+
+        private static GUIContent[] CreateToolNameContents()
+        {
+            var contents = new GUIContent[AvatarToolboxToolCatalog.Tools.Length];
+            for (int i = 0; i < contents.Length; i++)
+            {
+                contents[i] = new GUIContent(AvatarToolboxToolCatalog.Tools[i].DisplayName);
+            }
+            return contents;
         }
 
         private bool HasPendingChanges()
