@@ -1,0 +1,30 @@
+{
+    "name": "net.maaaaa.avatar-toolbox.face-keeper",
+    "rootNamespace": "Poyo.AvatarToolbox.FaceKeeper",
+    "references": [
+        "nadena.dev.ndmf.runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "AVATAR_TOOLBOX_HAS_NDMF",
+        "AVATAR_TOOLBOX_HAS_VRCSDK"
+    ],
+    "versionDefines": [
+        {
+            "name": "nadena.dev.ndmf",
+            "expression": "[1.14.0,2.0.0)",
+            "define": "AVATAR_TOOLBOX_HAS_NDMF"
+        },
+        {
+            "name": "com.vrchat.base",
+            "expression": "3.5.0",
+            "define": "AVATAR_TOOLBOX_HAS_VRCSDK"
+        }
+    ],
+    "noEngineReferences": false
+}
