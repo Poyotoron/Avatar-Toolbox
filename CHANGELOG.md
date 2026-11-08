@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.11.0] - 2026-11-08
+
+### Added
+
+- Components: avatar components that are processed and removed at build time with NDMF. They are always available and are not switched on in the settings window.
+- PAT Animation Helper: build radial puppet and toggle menus that move transforms and blend shapes from entered values, with timed transitions on toggle and an optional reverse transition.
+- PAT Face Keeper: at build time, raise face blend shape keys in every animation to the current values, including expressions added by FaceEmo or Modular Avatar. List the affected expressions along the menu and preview them before and after.
+- PAT Bone Weight Transfer: at build time, move bone weights to another bone on a copy of the mesh without writing a mesh asset.
+
+### Deprecated
+
+- Blendshape Keeper is deprecated in favor of PAT Face Keeper. It still works.
+- Bone Weight Collapser is deprecated in favor of PAT Bone Weight Transfer. It still works.
+
 ## [0.10.0] - 2026-11-05
 
 Renamed from Candy Box to Poyo's Avatar Toolbox. The tools work the same way.
